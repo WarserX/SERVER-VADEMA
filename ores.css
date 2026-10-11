@@ -380,3 +380,25 @@
     color: #fff;
     border-right-color: var(--red);
 }
+
+/* ============================================================ */
+/* PATCH — реестр полезных ископаемых: сузить блок             */
+/* ============================================================ */
+
+.ores {
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Раскрытая панель — тоже по центру, без внутреннего распора */
+.ores__panel {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 900px) {
+    .ores {
+        max-width: 100% !important;
+    }
+}
