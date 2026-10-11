@@ -145,3 +145,193 @@
 .header--site2.header--scrolled .header__button:hover {
     transform: translate3d(24px, 0, 0) scale3d(0.762, 0.762, 1);
 }
+
+/* ============================================================ */
+/* МОБИЛЬНЫЙ ФИКС — убрать выход за экран                       */
+/* ============================================================ */
+
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+section, main, header, footer, article, details {
+    max-width: 100vw !important;
+}
+
+@media (max-width: 900px) {
+    /* Все контейнеры — сжимаем отступы */
+    .hero,
+    .section,
+    .site--3__container,
+    .site--05__container,
+    .site--2__container,
+    .comments,
+    .notice {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Заголовки — не выходят за края */
+    .hero__title,
+    .section__head h2,
+    .subsection__title,
+    .site3-hero__title,
+    .site3-section__title,
+    .site05__title,
+    .site05__about-title,
+    .site2-hero__title,
+    .wanted__title,
+    .forbidden h2,
+    .country__name,
+    .card__name,
+    .modal__name {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        max-width: 100%;
+    }
+
+    /* site3-hero__title особенно огромный */
+    .site3-hero__title {
+        font-size: clamp(40px, 14vw, 100px) !important;
+        line-height: 1 !important;
+        padding: 20px 0 !important;
+    }
+
+    /* Логотипы — не вылезают из шапки */
+    .header__logo img,
+    .header__logo-img--site3,
+    .header__logo-img--site05 {
+        max-width: 70vw !important;
+        height: auto !important;
+        left: 20px !important;
+    }
+
+    /* Все многоколоночные сетки — в одну колонку */
+    .timeline,
+    .infrastructure,
+    .achievements,
+    .country__spirits,
+    .country__stats,
+    .population__info,
+    .site3-tech,
+    .site3-leaders,
+    .site3-symbols,
+    .site3-pop,
+    .site3-table__row,
+    .site3-list__item,
+    .site3-object,
+    .site3-compare__row,
+    .site05-mc__grid,
+    .site05__sites,
+    .site2-suk,
+    .s05-bio__body,
+    .site3-dossier__fact,
+    .site3-dossier__head,
+    .site3-readiness__item,
+    .site3-hero__lead {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* HUD на мобиле — отключён */
+    .s3-hud {
+        display: none !important;
+    }
+
+    /* Карточки — не выходят за экран */
+    .card,
+    .country,
+    .modal,
+    .warning,
+    .notice__container,
+    .forbidden__warning,
+    .wanted__grid,
+    .suk__card,
+    .vadimus__panel {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Галереи — сжимаем */
+    .card__gallery-wrap,
+    .site3-gallery-wrap,
+    .vadimus__gallery-wrap {
+        height: clamp(220px, 45vh, 380px) !important;
+    }
+
+    /* Внутренние слайды не вылезают */
+    .card__gallery-slide {
+        width: 82% !important;
+        height: 78% !important;
+    }
+    .card__gallery-slide.is-prev {
+        transform: translate3d(-50%, -50%, 0) translateX(-68%) scale3d(0.55, 0.55, 1) !important;
+    }
+    .card__gallery-slide.is-next {
+        transform: translate3d(-50%, -50%, 0) translateX(68%) scale3d(0.55, 0.55, 1) !important;
+    }
+}
+
+/* ============================================================ */
+/* ЛОГОТИПЫ НА МОБИЛЕ — не съезжают, не накладываются          */
+/* ============================================================ */
+
+@media (max-width: 900px) {
+
+    /* Все логотипы — уменьшенные, прижаты влево, вертикально центрированы */
+    .header__logo img,
+    .header__logo-img--1,
+    .header__logo-img--2,
+    .header__logo-img--site3,
+    .header__logo-img--site05 {
+        position: absolute !important;
+        top: 50% !important;
+        left: 16px !important;
+        right: auto !important;
+        height: 90px !important;
+        width: auto !important;
+        max-width: 55vw !important;
+        transform: translate3d(0, -50%, 0) scale3d(0.95, 0.95, 1) !important;
+        transform-origin: left center !important;
+    }
+
+    /* Скрытые логотипы — реально скрыты, а не opacity 0 */
+    .header:not(.header--site2):not(.header--site3):not(.header--site05) .header__logo-img--2,
+    .header:not(.header--site2):not(.header--site3):not(.header--site05) .header__logo-img--site3,
+    .header:not(.header--site2):not(.header--site3):not(.header--site05) .header__logo-img--site05,
+    .header--site2 .header__logo-img--1,
+    .header--site2 .header__logo-img--site3,
+    .header--site2 .header__logo-img--site05,
+    .header--site3 .header__logo-img--1,
+    .header--site3 .header__logo-img--2,
+    .header--site3 .header__logo-img--site05,
+    .header--site05 .header__logo-img--1,
+    .header--site05 .header__logo-img--2,
+    .header--site05 .header__logo-img--site3 {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* Hover на мобиле — без сдвига, только прозрачность */
+    .header__logo:hover img {
+        transform: translate3d(0, -50%, 0) scale3d(1, 1, 1) !important;
+    }
+
+    /* Сжатая шапка — тоже меньше */
+    .header--scrolled .header__logo img,
+    .header--scrolled .header__logo-img--1,
+    .header--scrolled .header__logo-img--2,
+    .header--scrolled .header__logo-img--site3,
+    .header--scrolled .header__logo-img--site05 {
+        height: 60px !important;
+        max-width: 45vw !important;
+    }
+
+    /* Логотип больше не absolute — он внутри flex-контейнера шапки */
+    .header__logo {
+        position: relative !important;
+        margin-right: auto !important;
+        flex-shrink: 0 !important;
+    }
+}
