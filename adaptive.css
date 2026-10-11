@@ -355,3 +355,52 @@ html, body {
         display: none !important;
     }
 }
+/* ============================================================ */
+/* ЛОГОТИПЫ НА МОБИЛЕ — не перекрывают бургер и кнопку         */
+/* Работает для всех режимов: Этанолстан, Сайберстан, Сервер   */
+/* ============================================================ */
+
+@media (max-width: 900px) {
+
+    .header__logo {
+        position: relative !important;
+        margin-right: auto !important;
+        flex-shrink: 0 !important;
+        max-width: 55vw !important;
+    }
+
+    .header__logo img,
+    .header__logo-img--1,
+    .header__logo-img--2,
+    .header__logo-img--site05 {
+        position: absolute !important;
+        top: 50% !important;
+        left: 12px !important;
+        right: auto !important;
+        height: 60px !important;
+        width: auto !important;
+        max-width: 50vw !important;
+        transform: translate3d(0, -50%, 0) scale3d(1, 1, 1) !important;
+        transform-origin: left center !important;
+    }
+
+    .header--scrolled .header__logo img,
+    .header--scrolled .header__logo-img--1,
+    .header--scrolled .header__logo-img--2,
+    .header--scrolled .header__logo-img--site05 {
+        height: 44px !important;
+        max-width: 42vw !important;
+    }
+
+    /* Hover не двигает */
+    .header__logo:hover img,
+    .header--site05 .header__logo:hover .header__logo-img--site05 {
+        transform: translate3d(0, -50%, 0) scale3d(1, 1, 1) !important;
+    }
+
+    /* Бургер прижат вправо, ничего не перекрывает */
+    .header__burger {
+        margin-left: auto !important;
+        margin-right: 12px !important;
+    }
+}
