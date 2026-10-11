@@ -16782,3 +16782,579 @@ section.site3-hero h1.site3-hero__title em {
         align-self: start !important;
     }
 }
+
+/* ============================================================ */
+/* PATCH v99 — ПК + телефон: гимн, tech badge, население,       */
+/* символика, раздел «О государстве». Заменяет v98.             */
+/* ============================================================ */
+
+/* ------------------------------------------------------------ */
+/* 1. БЛОК ГИМНА НА ПК — крупнее                                */
+/* ------------------------------------------------------------ */
+
+.site3-anthem-block {
+    max-width: 960px !important;
+    padding: 56px 56px 48px !important;
+    gap: 28px !important;
+}
+
+.site3-anthem-block__label {
+    font-size: 15px !important;
+    letter-spacing: 0.48em !important;
+    padding-bottom: 16px !important;
+}
+
+.site3-anthem {
+    font-size: 18px !important;
+    padding: 26px 56px !important;
+    letter-spacing: 0.34em !important;
+    gap: 18px !important;
+}
+
+.site3-anthem__icon { font-size: 22px !important; }
+.site3-anthem__bar  { width: 28px !important; height: 18px !important; }
+
+.site3-anthem-player {
+    max-width: 720px !important;
+    padding: 18px 26px !important;
+    gap: 16px !important;
+}
+
+.site3-anthem-time { font-size: 12px !important; min-width: 44px !important; }
+.site3-anthem-volume-icon { font-size: 20px !important; }
+
+.site3-anthem-lyrics {
+    max-width: 840px !important;
+    margin-top: 18px !important;
+    margin-bottom: 100px !important;
+}
+
+.site3-anthem-lyrics__toggle { padding: 22px 32px !important; }
+.site3-anthem-lyrics__label {
+    font-size: 14px !important;
+    letter-spacing: 0.42em !important;
+}
+
+@media (max-width: 900px) {
+    .site3-anthem-block {
+        max-width: 100% !important;
+        padding: 28px 20px 24px !important;
+        gap: 18px !important;
+    }
+    .site3-anthem-block__label { font-size: 11px !important; letter-spacing: 0.3em !important; }
+    .site3-anthem { font-size: 13px !important; padding: 16px 26px !important; letter-spacing: 0.18em !important; }
+    .site3-anthem-player { max-width: 100% !important; padding: 14px 14px !important; }
+    .site3-anthem-lyrics { max-width: 100% !important; margin-bottom: 60px !important; }
+    .site3-anthem-lyrics__label { font-size: 11px !important; letter-spacing: 0.28em !important; }
+}
+
+/* ------------------------------------------------------------ */
+/* 2. TECH BADGE — всегда квадрат, без эллипса                  */
+/* ------------------------------------------------------------ */
+
+.site3-tech__card--circle .site3-tech__badge,
+.site3-tech__card--diamond .site3-tech__badge,
+.site3-tech__card--square .site3-tech__badge {
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    min-height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+    aspect-ratio: 1 / 1 !important;
+    flex-shrink: 0 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+}
+
+.site3-tech__card--diamond .site3-tech__badge {
+    border-radius: 4px !important;
+    transform: rotate(45deg) !important;
+}
+
+.site3-tech__card--diamond:hover .site3-tech__badge {
+    transform: rotate(45deg) scale3d(1.03, 1.03, 1) !important;
+}
+
+.site3-tech__card--square .site3-tech__badge {
+    border-radius: 0 !important;
+}
+
+.site3-tech__card--hex .site3-tech__badge {
+    width: 100px !important;
+    height: 116px !important;
+    min-width: 100px !important;
+    min-height: 116px !important;
+    max-width: 100px !important;
+    max-height: 116px !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.site3-tech__card--circle .site3-tech__badge::before {
+    inset: -10px !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 900px) {
+    .site3-tech__card--circle .site3-tech__badge,
+    .site3-tech__card--diamond .site3-tech__badge,
+    .site3-tech__card--square .site3-tech__badge {
+        width: 76px !important;
+        height: 76px !important;
+        min-width: 76px !important;
+        min-height: 76px !important;
+        max-width: 76px !important;
+        max-height: 76px !important;
+    }
+    .site3-tech__card--hex .site3-tech__badge {
+        width: 76px !important;
+        height: 90px !important;
+        min-width: 76px !important;
+        min-height: 90px !important;
+        max-width: 76px !important;
+        max-height: 90px !important;
+    }
+    .site3-tech__card--circle .site3-tech__badge::before {
+        inset: -8px !important;
+    }
+    .site3-tech__card {
+        grid-template-columns: 96px 1fr !important;
+        gap: 8px 16px !important;
+        align-items: flex-start !important;
+    }
+    .site3-tech__badge > span { font-size: 24px !important; }
+}
+
+/* ------------------------------------------------------------ */
+/* 3. НАСЕЛЕНИЕ — сброс орбит на мобиле                         */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .site3-pop {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 16px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        aspect-ratio: auto !important;
+        margin: 40px auto 30px !important;
+        padding: 0 !important;
+    }
+
+    .site3-pop__orbit {
+        display: contents !important;
+        position: static !important;
+        animation: none !important;
+        inset: auto !important;
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .site3-pop__slot {
+        display: contents !important;
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        width: auto !important;
+        height: auto !important;
+        transform: none !important;
+        translate: 0 !important;
+        rotate: 0deg !important;
+        scale: 1 !important;
+        inset: auto !important;
+        animation: none !important;
+    }
+
+    .site3-pop__item {
+        position: static !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 130px !important;
+        padding: 18px 14px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        translate: 0 !important;
+        rotate: 0deg !important;
+        scale: 1 !important;
+        transform: none !important;
+        margin: 0 !important;
+        animation: none !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    .site3-pop__center {
+        grid-column: 1 / -1 !important;
+        justify-self: center !important;
+        width: 160px !important;
+        height: 160px !important;
+        margin: 0 auto 24px !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+    }
+
+    .site3-pop__num { font-size: 76px !important; }
+    .site3-pop__label { font-size: 11px !important; }
+    .site3-pop__name { font-size: 15px !important; }
+    .site3-pop__role { font-size: 12px !important; }
+    .site3-pop__icon { font-size: 26px !important; }
+    .site3-pop__note { font-size: 13px !important; padding: 0 12px !important; }
+}
+
+@media (max-width: 500px) {
+    .site3-pop {
+        grid-template-columns: 1fr !important;
+    }
+    .site3-pop__center { width: 140px !important; height: 140px !important; }
+    .site3-pop__num { font-size: 62px !important; }
+}
+
+/* ------------------------------------------------------------ */
+/* 4. СИМВОЛИКА — не выходит за пределы секции                  */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .site3-symbols {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 30px 20px !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .site3-symbol {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        padding-top: 22px !important;
+        transform: none !important;
+        overflow: visible !important;
+        box-sizing: border-box !important;
+    }
+
+    .site3-symbol::before {
+        width: 9px !important;
+        height: 9px !important;
+        top: -5.5px !important;
+        left: 0 !important;
+    }
+
+    .site3-symbol__icon {
+        font-size: 42px !important;
+        line-height: 1 !important;
+        word-break: break-word !important;
+        max-width: 100% !important;
+    }
+
+    .site3-symbol__title {
+        font-size: 13.5px !important;
+        letter-spacing: 0.06em !important;
+        line-height: 1.25 !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+    }
+
+    .site3-symbol__desc {
+        font-size: 12.5px !important;
+        line-height: 1.5 !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+    }
+
+    /* Hover-сдвиги убрать на мобиле — они «выносят» элемент за край */
+    .site3-symbol:hover,
+    .site3-symbol:hover .site3-symbol__icon,
+    .site3-symbol:hover .site3-symbol__title {
+        transform: none !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .site3-symbols {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ------------------------------------------------------------ */
+/* 5. РАЗДЕЛ «О ГОСУДАРСТВЕ» — цифры и заголовки не вылезают    */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .site3-rows {
+        gap: 44px !important;
+    }
+
+    .site3-row {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        overflow: visible !important;
+    }
+
+    .site3-row:hover {
+        transform: none !important;
+    }
+
+    .site3-row__num {
+        font-size: 42px !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+
+    .site3-row__num::after {
+        display: none !important;
+    }
+
+    .site3-row__title {
+        font-size: 22px !important;
+        line-height: 1.2 !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        padding-left: 22px !important;
+    }
+
+    .site3-row__title::before {
+        width: 12px !important;
+    }
+
+    .site3-row__text {
+        font-size: 15px !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        min-width: 0 !important;
+    }
+
+    .site3-row__note {
+        margin-top: 18px !important;
+        padding: 14px 16px 14px 20px !important;
+        font-size: 13px !important;
+    }
+}
+
+/* ------------------------------------------------------------ */
+/* 6. HERO СИМВОЛЫ (ГЕРБ / ФЛАГ) — не выходят за контейнер      */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .site3-hero__symbols {
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 0 4px !important;
+        gap: 24px !important;
+    }
+
+    .site3-hero__symbol {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 20px 16px 16px !important;
+        transform: none !important;
+        overflow: visible !important;
+    }
+
+    .site3-hero__symbol:hover {
+        transform: none !important;
+    }
+
+    .site3-hero__symbol:nth-child(1),
+    .site3-hero__symbol:nth-child(2) { max-width: 100% !important; }
+
+    .site3-hero__symbol-slot {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 12px !important;
+        overflow: hidden !important;
+    }
+
+    .site3-hero__symbol-slot img {
+        max-width: 100% !important;
+        max-height: 280px !important;
+        width: auto !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+
+    .site3-hero__symbol:nth-child(1) .site3-hero__symbol-slot { min-height: 0 !important; max-height: none !important; }
+    .site3-hero__symbol:nth-child(1) .site3-hero__symbol-slot img { max-height: 320px !important; }
+    .site3-hero__symbol:nth-child(2) .site3-hero__symbol-slot { min-height: 0 !important; max-height: none !important; }
+    .site3-hero__symbol:nth-child(2) .site3-hero__symbol-slot img { max-height: 220px !important; }
+
+    .site3-hero__symbol-label {
+        font-size: 11px !important;
+        letter-spacing: 0.22em !important;
+        word-break: break-word !important;
+        padding-top: 12px !important;
+        margin-top: 6px !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .site3-hero__symbol-slot img { max-height: 200px !important; }
+    .site3-hero__symbol:nth-child(1) .site3-hero__symbol-slot img { max-height: 260px !important; }
+    .site3-hero__symbol:nth-child(2) .site3-hero__symbol-slot img { max-height: 180px !important; }
+}
+
+/* ------------------------------------------------------------ */
+/* 7. ОБЩАЯ СТРАХОВКА ОТ ГОРИЗОНТАЛЬНОГО СКРОЛЛА                */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .site--3,
+    .site--3__container {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+    }
+
+    .site3-section,
+    .site3-section__head {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        min-width: 0 !important;
+    }
+
+    .site3-section__title {
+        max-width: 100% !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+}
+
+/* ============================================================ */
+/* PATCH v100 — бейдж «Суверенное радиоактивное государство»    */
+/* не выходит за границу сайта на телефоне. Заменяет v99.       */
+/*                                                              */
+/* Причина: в мобильном патче v24 у .site3-hero стоит            */
+/* padding: 50px 0 100px — нулевые боковые отступы.             */
+/* Плюс бейдж inline-block с letter-spacing 0.32em и центровкой  */
+/* уходил за край на узком экране.                              */
+/* ============================================================ */
+
+/* ------------------------------------------------------------ */
+/* 1. Вернуть боковые отступы hero на мобиле                    */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .site3-hero {
+        padding: 50px 16px 100px !important;
+        box-sizing: border-box !important;
+        max-width: 100vw !important;
+        overflow-x: clip !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .site3-hero {
+        padding: 40px 12px 80px !important;
+    }
+}
+
+/* ------------------------------------------------------------ */
+/* 2. Бейдж — блочный, центрирован, переносится по словам       */
+/* ------------------------------------------------------------ */
+
+.site3-hero__badge {
+    display: block !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    text-align: center !important;
+    /* letter-spacing не должен давать «свисающий» хвост справа */
+    letter-spacing: 0.16em !important;
+    /* компенсировать визуальный сдвиг от letter-spacing */
+    padding-right: 26px !important;
+    padding-left: 26px !important;
+}
+
+/* Псевдоэлемент-тире слева — оставляем, но сдвигаем ближе */
+.site3-hero__badge::before {
+    left: 10px !important;
+}
+
+/* Псевдоэлемент-линия справа (v35) — скрыть, он тянет за край */
+.site3-hero__badge::after {
+    display: none !important;
+    content: none !important;
+}
+
+@media (max-width: 900px) {
+    .site3-hero__badge {
+        font-size: 11px !important;
+        letter-spacing: 0.10em !important;
+        padding: 8px 18px 8px 30px !important;
+        line-height: 1.35 !important;
+    }
+    .site3-hero__badge::before {
+        left: 10px !important;
+        width: 12px !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .site3-hero__badge {
+        font-size: 10px !important;
+        letter-spacing: 0.06em !important;
+        padding: 7px 14px 7px 26px !important;
+    }
+    .site3-hero__badge::before {
+        left: 8px !important;
+        width: 10px !important;
+    }
+}
+
+/* ------------------------------------------------------------ */
+/* 3. Общая страховка: hero и всё внутри — не шире экрана       */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .site3-hero > * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .site3-hero__top {
+        flex-wrap: wrap !important;
+        gap: 8px 14px !important;
+        justify-content: center !important;
+        font-size: 9.5px !important;
+        letter-spacing: 0.16em !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .site3-hero__top span {
+        white-space: normal !important;
+        word-break: break-word !important;
+        text-align: center !important;
+    }
+
+    .site3-hero__sub {
+        font-size: 11px !important;
+        letter-spacing: 0.16em !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        word-break: break-word !important;
+        white-space: normal !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
