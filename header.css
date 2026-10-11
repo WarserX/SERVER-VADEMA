@@ -1,0 +1,444 @@
+/* ============================================================ */
+/* БЛОК 5 — ШАПКА                                               */
+/* ============================================================ */
+
+.header {
+    padding-block: 0;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    background: rgba(250, 247, 255, 0.97);
+    border-bottom: 1px solid var(--line);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    overflow: visible;
+    transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s ease;
+    box-shadow: 0 1px 0 0 var(--line), 0 20px 50px -15px rgba(80, 40, 140, 0.25);
+}
+
+.header--scrolled {
+    height: 116px;
+    box-shadow: 0 1px 0 0 var(--line), 0 10px 30px -15px rgba(80, 40, 140, 0.35);
+}
+
+.header__container { width: 100%; max-width: 1600px; margin-inline: auto; padding-inline: 30px; }
+
+.header__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* ЛОГО — absolute от шапки.*/
+.header__logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 40px;
+}
+
+/* Невидимая зона hover на +20px — по гайду, курсор не соскакивает */
+.header__logo::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    pointer-events: auto;
+    border-radius: 20px;
+}
+
+.header__logo img {
+    display: block;
+    height: 152px;
+    width: auto;
+    transform: translate3d(0, 0, 0) scale3d(0.93, 0.93, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+}
+
+.header__logo:hover img {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+.header--scrolled .header__logo img {
+    transform: translate3d(0, 0, 0) scale3d(0.573, 0.573, 1);
+}
+
+.header--scrolled .header__logo:hover img {
+    transform: translate3d(0, 0, 0) scale3d(0.617, 0.617, 1);
+}
+
+/* --- МЕНЮ --- */
+
+.header__list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    margin-left: auto;
+    margin-right: 50px;
+    list-style: none;
+    flex-wrap: nowrap;
+}
+
+/* font-size всегда 22px, меняется только scale.
+   22 × 0.91 = 20px визуально. */
+.header__list_link {
+    display: inline-block; position: relative;
+    font-size: 26px;
+    color: var(--grey); font-weight: 400;
+    white-space: nowrap; padding-bottom: 6px;
+    transform: scale3d(0.91, 0.91, 1);
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: color 0.3s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    outline: none; -webkit-tap-highlight-color: transparent;
+}
+
+.header__list_link::after {
+    content: ""; position: absolute;
+    left: 0; right: 0; bottom: 0; height: 3px;
+    background: var(--green);
+    transform: scaleX(0); transform-origin: center center;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+}
+
+.header__list_link.active { color: var(--text); }
+.header__list_link.active::after { transform: scaleX(1); }
+
+.header__list_link:hover { color: var(--text); transform: scale3d(1, 1, 1); }
+.header__list_link:hover::after { transform: scaleX(1.25); background: var(--red); }
+/* Зелёная подсветка Вадимуса — только в режиме Этанолстана (site1) */
+.header:not(.header--site2):not(.header--site05) .header__list li:nth-child(3) .header__list_link:hover {
+    color: var(--green);
+}
+
+/* --- КНОПКА --- */
+
+/* font-size и padding НЕ меняются, только scale.
+   22 × 0.91 = 20px визуально. */
+.header__button {
+    font-weight: 400;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-size: 26px;
+    border: 3px solid var(--grey);
+    padding: 23px 40px;
+    border-radius: 14px;
+    position: relative;
+    display: inline-block;
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transform: translate3d(0, 0, 0) scale3d(0.91, 0.91, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    text-rendering: geometricPrecision;
+    will-change: transform;
+    transition:
+        color 0.3s ease,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header__button:hover {
+    color: var(--black);
+    transform: translate3d(24px, 0, 0) scale3d(0.9, 0.9, 1);
+    border-color: var(--black);
+    background: var(--green);
+    box-shadow: 0 8px 24px -8px rgba(80, 40, 140, 0.3);
+}
+
+.header__button video {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 220px; height: 190px;
+    object-fit: cover; opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; z-index: 200;
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.header__button:hover video { opacity: 1; }
+.header__button span { position: relative; z-index: 1; transition: opacity 0.3s ease; white-space: nowrap; }
+.header__button:hover span { opacity: 0; }
+
+/* --- СЖАТАЯ ШАПКА: только scale, font-size и padding не трогаются --- */
+
+/* 22 × 0.786 = 17.3px визуально */
+.header--scrolled .header__list_link {
+    transform: scale3d(0.786, 0.786, 1);
+}
+.header--scrolled .header__list_link:hover {
+    transform: scale3d(0.864, 0.864, 1);
+}
+
+.header--scrolled .header__button {
+    transform: translate3d(0, 0, 0) scale3d(0.786, 0.786, 1);
+}
+
+.header--scrolled .header__button:hover {
+    transform: translate3d(24px, 0, 0) scale3d(0.762, 0.762, 1);
+}
+
+/* ============================================================ */
+/* БЛОК 24 — ВЫПАДАЮЩЕЕ МЕНЮ В ШАПКЕ                            */
+/* ============================================================ */
+
+.header__list_item {
+    position: relative;
+}
+
+.header__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 12px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 100;
+}
+
+.header__list_item--has-sub:hover .header__dropdown,
+.header__list_item--has-sub:focus-within .header__dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.header__dropdown-inner {
+    min-width: 200px;
+    padding: 10px 0;
+    background: rgba(250, 247, 255, 0.98);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px -20px rgba(80, 40, 140, 0.35);
+}
+
+.header__dropdown-inner a {
+    display: block;
+    padding: 10px 22px;
+    font-size: 15px;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 400;
+    color: var(--text-2);
+    white-space: nowrap;
+    transition: background 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
+}
+
+.header__dropdown-inner a:hover {
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--green);
+    padding-left: 28px;
+}
+
+.header__list_item--has-sub > .header__list_link::before {
+    content: "▾";
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    font-size: 11px;
+    line-height: 1;
+    color: var(--muted);
+    transform: translateY(-60%);
+    transition: color 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+}
+
+.header__list_item--has-sub:hover > .header__list_link::before {
+    color: var(--green);
+    transform: translateY(-60%) rotate(180deg);
+}
+
+/* ============================================================ */
+/* БУРГЕР-МЕНЮ                                                  */
+/* ============================================================ */
+
+.header__burger {
+    display: none;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 2px solid var(--grey);
+    border-radius: 12px;
+    background: var(--card);
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: 12px;
+    flex-shrink: 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.header__burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 1px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.header__burger:hover {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.header__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.header__burger.is-open span:nth-child(2) { opacity: 0; }
+.header__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.header--site2 .header__burger {
+    background: rgba(20, 20, 20, 0.9);
+    border-color: rgba(0, 255, 0, 0.5);
+}
+.header--site2 .header__burger span { background: #e8edf6; }
+.header--site2 .header__burger:hover {
+    background: #00FF00;
+    border-color: #00FF00;
+}
+.header--site2 .header__burger:hover span { background: #090909; }
+
+/* ============================================================ */
+/* PATCH v1 — кнопка шапки: убрано дёргание на границе          */
+/* Кнопка сдвигается на 24px при hover → курсор оказывается за  */
+/* её краем → hover срабатывает/отменяется → осцилляция.        */
+/* Фикс: невидимая зона захвата вокруг кнопки через ::before.   */
+/* ============================================================ */
+
+.header__button::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: -32px !important;
+    pointer-events: auto !important;
+}
+
+.header__button {
+    will-change: auto !important;
+}
+
+/* ============================================================ */
+/* PATCH v4 — плавная смена списков в шапке                    */
+/* Все три <ul> наложены в одной grid-ячейке, всегда display:  */
+/* flex. Видимость — только через opacity/visibility/transform. */
+/* ============================================================ */
+
+@media (min-width: 1201px) {
+
+    .header__nav {
+        display: grid !important;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: 1fr;
+        align-items: center;
+        width: 100%;
+    }
+
+    .header__logo {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+    }
+
+    .header__button-wrap,
+    .header__button,
+    .header__burger {
+        grid-column: 3;
+        grid-row: 1;
+        justify-self: end;
+        align-self: center;
+    }
+
+    /* Все три списка — в одной ячейке */
+    .header__list,
+    .header__list--site3,
+    .header__list--site05 {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: center;
+
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+        margin: 0 50px 0 0 !important;
+        list-style: none;
+        flex-wrap: nowrap;
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(0, -22px, 0);
+        pointer-events: none;
+        transition:
+            opacity 0.32s ease,
+            transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+            visibility 0.4s ease;
+    }
+
+    /* Активный список — видимый */
+    .header:not(.header--site3):not(.header--site05) .header__list:not(.header__list--site3):not(.header__list--site05),
+    .header--site3 .header__list--site3,
+    .header--site05 .header__list--site05 {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translate3d(0, 0, 0) !important;
+        pointer-events: auto !important;
+    }
+
+    /* Внутренние анимации ссылок (span--1/span--2) — как было */
+    .header__list_text {
+        transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+}
+
+/* ============================================================ */
+/* PATCH v91 — кнопка шапки: почти незаметный hover             */
+/* ============================================================ */
+
+.header__button:hover {
+    transform: translate3d(0, 0, 0) scale3d(0.915, 0.915, 1) !important;
+}
+
+/* ============================================================ */
+/* PATCH v93 — шапка Этанолстана: «Личности» без смены цвета    */
+/* ============================================================ */
+
+/* Бьёт исходное правило .header:not(...):not(...) ... nth-child(3) */
+.header:not(.header--site2):not(.header--site3):not(.header--site05)
+.header__list .header__list_item:nth-child(3) .header__list_link:hover,
+.header:not(.header--site2):not(.header--site3):not(.header--site05)
+.header__list .header__list_item:nth-child(3) .header__list_link:hover .header__list_text,
+.header:not(.header--site2):not(.header--site3):not(.header--site05)
+.header__list .header__list_item:nth-child(3) .header__list_link:hover span {
+    color: var(--text) !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: var(--text) !important;
+}

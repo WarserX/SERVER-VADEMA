@@ -1,0 +1,222 @@
+/* ============================================================ */
+/* PAPER-TEAR — рваный край между сайтами                       */
+/* ============================================================ */
+
+.paper-tear {
+    position: relative;
+    height: 140px;
+    background: #090909;   /* цвет фона Сайберстана */
+    overflow: hidden;
+    line-height: 0;
+    margin-top: -1px;
+}
+
+.paper-tear__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Верхняя часть — цвет футера C2H5OHстана */
+.paper-tear__back {
+    fill: #1a0d2e;
+}
+
+/* Тень от рваного края — убрана */
+.paper-tear__shadow {
+    display: none;
+}
+
+/* Нижняя часть — цвет фона Сайберстана */
+.paper-tear__front {
+    fill: #090909;
+}
+
+/* ============================================================ */
+/* ШАПКА ПРИ ПЕРЕХОДЕ ВО ВТОРОЙ РЕЖИМ                           */
+/* ============================================================ */
+
+.header__logo img {
+    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header__logo-img--2 {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.header--site2 .header__logo-img--1 {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.header--site2 .header__logo-img--2 {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- Смена палитры --- */
+
+.header {
+    transition:
+        height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.6s ease,
+        background 0.5s ease,
+        border-color 0.5s ease;
+}
+
+.header--site2 {
+    background: rgba(9, 9, 9, 0.97);
+    border-bottom-color: rgba(0, 255, 0, 0.15);
+    box-shadow: 0 1px 0 0 rgba(0, 255, 0, 0.06), 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+}
+
+.header--site2 .header__list_link {
+    color: rgba(200, 210, 230, 0.75);
+}
+
+.header--site2 .header__list_link:hover,
+.header--site2 .header__list_link.active {
+    color: #00FF00;
+}
+
+.header--site2 .header__list_link::after {
+    background: #00FF00;
+}
+
+.header--site2 .header__button {
+    background: rgba(20, 20, 20, 0.9);
+    color: #e8edf6;
+    border-color: rgba(0, 255, 0, 0.5);
+}
+
+.header--site2 .header__button:hover {
+    background: #00FF00;
+    color: #090909;
+    border-color: #00FF00;
+    transform: translate3d(24px, 0, 0) scale3d(0.9, 0.9, 1);
+}
+
+/* ============================================================ */
+/* Две подписи в каждой ссылке                                  */
+/* ============================================================ */
+
+.header__list_link {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+    position: relative;
+}
+
+.header__list_text {
+    display: block;
+    grid-area: 1 / 1 / 2 / 2;
+    white-space: nowrap;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header__list_text--2 {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, -8px, 0);
+}
+
+.header--site2 .header__list_text--1 {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, 8px, 0);
+}
+
+.header--site2 .header__list_text--2 {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0);
+}
+
+/* --- Скрыть dropdown при site2 --- */
+
+.header--site2 .header__dropdown {
+    display: none;
+}
+
+.header--site2 .header__list_item--has-sub > .header__list_link::before {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .paper-tear,
+    .header,
+    .header__logo img,
+    .header__list_text {
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================================ */
+/* PATCH — переход Этанолстан ↔ Сайберстан: как у остальных     */
+/* Заменяет старую логику span--1 / span--2 (разъезд по Y).    */
+/* Теперь: старый текст улетает вверх, новый прилетает сверху. */
+/* ============================================================ */
+
+/* Контейнер ссылки — оба span друг на друге */
+.header__list_link {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+}
+
+.header__list_text {
+    grid-area: 1 / 1 / 2 / 2;
+    display: block;
+    white-space: nowrap;
+    transition:
+        opacity 0.32s ease,
+        transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* --- Состояние по умолчанию: показываем --1, --2 улетел наверх --- */
+
+.header__list_text--1 {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+}
+
+.header__list_text--2 {
+    opacity: 0;
+    transform: translate3d(0, -22px, 0);
+    pointer-events: none;
+}
+
+/* --- Режим Сайберстана: --1 улетает наверх, --2 прилетает сверху --- */
+
+.header--site2 .header__list_text--1 {
+    opacity: 0;
+    transform: translate3d(0, -22px, 0);
+    pointer-events: none;
+}
+
+.header--site2 .header__list_text--2 {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+}
+
+.paper-tear__front {
+    fill: #0a100e !important;
+}
+
+.paper-tear {
+    background: #1a0d2e !important;
+}
+
+.paper-tear__back {
+    fill: #1a0d2e !important;
+}

@@ -1,0 +1,1874 @@
+/* ============================================================ */
+/* БЛОК 41 — СЕКЦИЯ «СТРАНЫ И СУБЪЕКТЫ»                         */
+/* ============================================================ */
+
+.countries {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ============================================================ */
+/* КАРТОЧКА СТРАНЫ                                              */
+/* ============================================================ */
+
+.country {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    interpolate-size: allow-keywords;
+    box-shadow: 0 20px 55px -35px rgba(80, 40, 140, 0.3);
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.country::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--green), var(--purple), var(--red));
+    opacity: 0.9;
+}
+
+.country:hover {
+    border-color: var(--green);
+    box-shadow: 0 22px 60px -30px rgba(80, 40, 140, 0.4), 0 0 60px -20px rgba(74, 222, 128, 0.35);
+}
+
+.country[open] {
+    border-color: var(--green);
+    box-shadow: 0 22px 60px -30px rgba(80, 40, 140, 0.45), 0 0 80px -25px rgba(74, 222, 128, 0.4);
+}
+
+.country::details-content {
+    block-size: 0;
+    overflow: hidden;
+    content-visibility: hidden;
+    transition:
+        block-size 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        content-visibility 0.55s allow-discrete;
+}
+
+.country[open]::details-content {
+    block-size: auto;
+    content-visibility: visible;
+}
+
+/* ============================================================ */
+/* ЗАГОЛОВОК                                                    */
+/* ============================================================ */
+
+.country__head {
+    display: grid;
+    grid-template-columns: 240px 1fr auto;
+    gap: 28px;
+    align-items: center;
+    padding: 28px 30px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.3s ease;
+}
+
+/* Если внутри две фотки — первая колонка шире */
+.country:has(.country__code--duo) .country__head {
+    grid-template-columns: 400px 1fr auto;
+}
+
+.country__head::-webkit-details-marker { display: none; }
+.country__head::marker { content: ""; }
+
+.country__head:hover { background: rgba(74, 222, 128, 0.05); }
+
+/* --- ФОТО / НОМЕР --- */
+
+.country__code {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 240px;
+    height: 240px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #ffffff 0%, #faf7ff 100%);
+    border: 1px solid var(--line);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--green);
+    overflow: hidden;
+    padding: 0;
+    transform: translate3d(0, 0, 0) scale3d(0.96, 0.96, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease, border-color 0.3s ease;
+}
+
+.country__code img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+/* Две фотки рядом — блок сам растягивается по ширине первой колонки */
+.country__code--duo {
+    width: 400px;
+    height: 240px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    place-items: stretch;
+    align-items: stretch;
+}
+
+.country__code--duo img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    display: block;
+}
+
+.country:hover .country__code--duo img,
+.country[open] .country__code--duo img {
+    border-color: var(--green);
+}
+
+.country--vadimus  .country__code { color: var(--green); }
+.country--yaroslav .country__code { color: var(--purple); }
+.country--cyber    .country__code { color: var(--red); }
+.country--danyulyak .country__code { color: var(--orange); }
+.country--ledik    .country__code { color: var(--muted); }
+.country--lavrentiy .country__code { color: #9B6DD6; }
+
+/* --- МЕТА --- */
+
+.country__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.country__head-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.country__name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin: 0;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(0.96, 0.96, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.country:hover .country__name,
+.country[open] .country__name {
+    color: var(--green);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+.country__status {
+    display: inline-block;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.country__status--sovereign { color: var(--green);  background: rgba(74, 222, 128, 0.08); }
+.country__status--partner   { color: var(--purple); background: rgba(179, 136, 255, 0.1); }
+.country__status--enemy     { color: var(--red);    background: rgba(229, 57, 53, 0.08); }
+.country__status--neutral   { color: #4A7BC8;       background: rgba(74, 123, 200, 0.08); }
+.country__status--dead      { color: #9B6DD6;       background: rgba(155, 109, 214, 0.08); }
+
+.country__short {
+    font-size: 16.5px;
+    line-height: 1.55;
+    color: var(--text-2);
+    margin: 0;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(0.96, 0.96, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.country:hover .country__short,
+.country[open] .country__short {
+    color: var(--text);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+/* --- КНОПКА-ТРИГГЕР --- */
+
+.country__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 30px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--card);
+    border: 2px solid var(--text);
+    border-radius: 10px;
+    white-space: nowrap;
+    user-select: none;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+
+.country__head:hover .country__toggle {
+    background: var(--green);
+    color: var(--text);
+    border-color: var(--green);
+    transform: translate3d(4px, -2px, 0);
+    box-shadow: 0 12px 24px -14px rgba(74, 222, 128, 0.7);
+}
+
+.country[open] .country__toggle {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+}
+
+.country__toggle-icon {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.country[open] .country__toggle-icon { transform: rotate(180deg); }
+
+/* ============================================================ */
+/* ТЕЛО — ДОСЬЕ                                                 */
+/* ============================================================ */
+
+.country__body {
+    padding: 0 30px 30px;
+    border-top: 1px solid var(--line);
+    animation: country-open 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes country-open {
+    from { opacity: 0; transform: translate3d(0, -8px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* --- ОПИСАНИЕ --- */
+
+.country__desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-2);
+    margin: 22px 0 0;
+    padding: 16px 20px;
+    background: var(--soft);
+    border-left: 4px solid var(--green);
+    border-radius: 0 10px 10px 0;
+    transition: color 0.3s ease;
+}
+
+.country--yaroslav   .country__desc { border-left-color: var(--purple); }
+.country--cyber      .country__desc { border-left-color: var(--red); }
+.country--danyulyak  .country__desc { border-left-color: var(--orange); }
+.country--ledik      .country__desc { border-left-color: var(--muted); }
+.country--lavrentiy  .country__desc { border-left-color: #9B6DD6; }
+
+.country:hover .country__desc { color: var(--text); }
+
+/* --- ГРИД ДОСЬЕ: факты сверху, галерея во всю ширину --- */
+
+.country__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 22px 0;
+    align-items: start;
+}
+
+/* --- ФАКТЫ --- */
+
+.country__facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 28px;
+}
+
+.country__fact {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 16px;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 13.5px;
+    color: var(--text-2);
+    position: relative;
+}
+
+.country__fact::after {
+    content: "";
+    position: absolute;
+    inset: -4px -8px;
+    pointer-events: auto;
+}
+
+.country__fact > span:first-child {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    transition: color 0.25s ease;
+}
+
+.country__fact:hover > span:first-child { color: var(--red); }
+
+.country__fact > span:last-child {
+    color: var(--text);
+    line-height: 1.45;
+    transition: color 0.25s ease;
+}
+
+.country__fact:hover > span:last-child { color: var(--green); }
+
+/* --- ТЕГИ --- */
+
+.country__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    grid-column: 1 / -1;
+}
+
+.country__tags li {
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 5px 12px;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    border-radius: 20px;
+    color: var(--text-2);
+    cursor: default;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.country__tags li:hover {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+}
+
+.country--yaroslav  .country__tags li { background: rgba(179, 136, 255, 0.08); border-color: rgba(179, 136, 255, 0.25); }
+.country--yaroslav  .country__tags li:hover { background: var(--purple); border-color: var(--purple); }
+.country--cyber     .country__tags li { background: rgba(229, 57, 53, 0.08); border-color: rgba(229, 57, 53, 0.25); }
+.country--cyber     .country__tags li:hover { background: var(--red); border-color: var(--red); }
+.country--danyulyak .country__tags li { background: rgba(255, 181, 112, 0.1); border-color: rgba(255, 181, 112, 0.3); }
+.country--danyulyak .country__tags li:hover { background: var(--orange); border-color: var(--orange); }
+
+/* --- ГАЛЕРЕЯ — карусель во всю ширину карточки --- */
+
+.country__gallery {
+    display: block;
+    width: 100%;
+}
+
+/* --- ЦИТАТА --- */
+
+.country__quote {
+    margin: 18px 0 0;
+    padding: 14px 20px 14px 22px;
+    background: rgba(74, 222, 128, 0.06);
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--text-2);
+    line-height: 1.65;
+    font-size: 14px;
+    transition: background 0.3s ease, border-left-color 0.3s ease, color 0.3s ease;
+}
+
+.country:hover .country__quote {
+    background: rgba(74, 222, 128, 0.12);
+    border-left-color: var(--red);
+    color: var(--text);
+}
+
+.country__quote-mark {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 26px;
+    line-height: 0;
+    color: var(--green);
+    margin-right: 6px;
+    vertical-align: -5px;
+}
+
+.country:hover .country__quote-mark { color: var(--red); }
+
+/* ============================================================ */
+/* АДАПТИВ                                                      */
+/* ============================================================ */
+
+@media (max-width: 900px) {
+    .country__head {
+        grid-template-columns: 180px 1fr;
+        gap: 18px;
+        padding: 20px 22px;
+    }
+    .country__code { width: 180px; height: 180px; font-size: 32px; border-radius: 16px; }
+    .country__code--duo { width: 300px; height: 180px; gap: 6px; }
+    .country__code--duo img { height: 180px; border-radius: 12px; }
+    .country:has(.country__code--duo) .country__head { grid-template-columns: 300px 1fr; }
+    .country__name { font-size: 24px; }
+    .country__toggle {
+        grid-column: 1 / -1;
+        justify-content: center;
+        width: 100%;
+        margin-top: 8px;
+    }
+    .country__body { padding: 0 22px 24px; }
+    .country__grid { grid-template-columns: 1fr; gap: 22px; }
+    .country__facts { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+    .country__head {
+        grid-template-columns: 140px 1fr;
+        gap: 14px;
+        padding: 16px 18px;
+    }
+    .country__code { width: 140px; height: 140px; font-size: 26px; border-radius: 14px; }
+    .country__code--duo { width: 240px; height: 140px; }
+    .country__code--duo img { height: 140px; border-radius: 10px; }
+    .country:has(.country__code--duo) .country__head { grid-template-columns: 240px 1fr; }
+    .country__name { font-size: 20px; }
+    .country__desc { padding: 12px 16px; font-size: 14px; }
+}
+/* ============================================================ */
+/* БЛОК 42 — МИКРОАНИМАЦИИ ВЕЗДЕ                                */
+/* ============================================================ */
+
+/* --- 1. Все абзацы, описания, мета, легенды — сдвиг вправо + подсветка --- */
+
+.subsection__text,
+.timeline__item p,
+.node__text,
+.suk__text,
+.suk__note,
+.suk__quote,
+.card__tagline,
+.card__panel-body p,
+.card__note,
+.card__fact > span:last-child,
+.vadimus__panel-body p,
+.vadimus__regalia-note,
+.vadimus__note,
+.vadimus__tagline,
+.country__desc,
+.country__quote,
+.ores-deep__body p,
+.ores-deep__note,
+.ores-deep__memo,
+.ores__empty,
+.notice__text,
+.notice__small,
+.footer__text p,
+.footer__text .small,
+.small,
+.modal__section p,
+.modal__note,
+.modal__tagline,
+.quote p.small {
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.3s ease,
+        text-shadow 0.35s ease;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+}
+
+.subsection__text:hover,
+.timeline__item p:hover,
+.node__text:hover,
+.suk__text:hover,
+.suk__note:hover,
+.suk__quote:hover,
+.card__tagline:hover,
+.card__panel-body p:hover,
+.card__note:hover,
+.card__fact > span:last-child:hover,
+.vadimus__panel-body p:hover,
+.vadimus__regalia-note:hover,
+.vadimus__note:hover,
+.vadimus__tagline:hover,
+.country__desc:hover,
+.country__quote:hover,
+.ores-deep__body p:hover,
+.ores-deep__note:hover,
+.ores-deep__memo:hover,
+.ores__empty:hover,
+.notice__text:hover,
+.notice__small:hover,
+.small:hover,
+.modal__section p:hover,
+.modal__note:hover,
+.modal__tagline:hover,
+.quote p.small:hover {
+    transform: translate3d(6px, 0, 0);
+    color: var(--text);
+    text-shadow: 0 0 14px rgba(74, 222, 128, 0.35);
+}
+
+/* --- 2. Подсветка карточек-секций --- */
+
+.subsection:hover,
+.timeline__item:hover,
+.node:hover,
+.ores-deep__item:hover,
+.suk__card:hover,
+.vadimus__panel:hover,
+.vadimus__regalia-item:hover {
+    box-shadow:
+        0 22px 45px -25px rgba(80, 40, 140, 0.45),
+        0 0 40px -15px rgba(74, 222, 128, 0.35);
+}
+
+/* --- 3. Статусы-бейджи: подъём + тень при hover на карточку --- */
+
+.country__status,
+.card__status,
+.modal__status,
+.vadimus__status {
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.4s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, box-shadow;
+}
+
+.country:hover .country__status,
+.card:hover .card__status,
+.country:hover .country__code + .country__meta .country__status {
+    transform: translate3d(0, -1px, 0);
+    box-shadow: 0 8px 18px -8px currentColor;
+}
+
+/* --- 4. Пилюли-теги подпрыгивают --- */
+
+.ores-deep__tags li,
+.modal__tags li,
+.country__tags li,
+.card__tags li,
+.vadimus__tags li,
+.suk__tags li {
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.ores-deep__tags li:hover,
+.modal__tags li:hover,
+.country__tags li:hover,
+.card__tags li:hover,
+.vadimus__tags li:hover,
+.suk__tags li:hover {
+    transform: translate3d(0, -3px, 0);
+}
+
+/* --- 5. Табы и заголовки секций модалки — letter-spacing --- */
+
+.modal__tab:hover {
+    letter-spacing: 0.14em;
+}
+
+.modal__section-title:hover {
+    letter-spacing: 0.2em;
+}
+
+/* --- 6. Подпись под фото в личностях — letter-spacing --- */
+
+.card__photo-caption {
+    transition: color 0.3s ease, letter-spacing 0.4s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover .card__photo-caption {
+    letter-spacing: 0.22em;
+}
+
+
+/* --- 8. Точки в population растут --- */
+
+.population__info > div::before {
+    transition: background 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.population__info > div:hover::before {
+    transform: scale3d(1.5, 1.5, 1);
+}
+
+/* --- 9. Точки карусели — рост --- */
+
+.card__gallery-dot:hover {
+    transform: scale3d(1.4, 1.4, 1);
+}
+
+/* --- 10. Тире перед автором цитаты — выезжает --- */
+
+.quote__author::before {
+    transition: color 0.35s ease, margin-right 0.35s ease;
+}
+
+.quote:hover .quote__author::before {
+    margin-right: 10px;
+}
+
+/* --- 11. Полоска под заголовком секции — градиент --- */
+
+.section__head::after {
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s ease;
+}
+
+.section__head:hover::after {
+    background: linear-gradient(90deg, var(--green), var(--red));
+}
+
+/* --- 12. Строки-факты в карточках — сдвиг значения --- */
+
+.card__fact:hover > span:last-child,
+.country__fact:hover > span:last-child,
+.bio-fact:hover > span:last-child,
+.vadimus__fact:hover > span:last-child,
+.wanted__fact:hover > span:last-child {
+    transform: translate3d(4px, 0, 0);
+}
+
+/* --- 13. Строки законов — весь текст сдвигается --- */
+
+.law:hover .law__text {
+    transform: translate3d(4px, 0, 0);
+}
+
+/* --- 14. Всё рядом с .small — подсветка --- */
+
+.notice__container:hover .notice__small,
+.notice__container:hover .notice__text {
+    color: var(--text);
+}
+
+/* --- 15. Иконки внутри блоков — кручение --- */
+
+.card__panel:hover .card__panel-icon,
+.vadimus__panel:hover .vadimus__panel-icon {
+    transform: rotate(-14deg) scale3d(1.15, 1.15, 1);
+}
+
+.vadimus__regalia-item:hover .vadimus__regalia-icon {
+    transform: scale3d(1.15, 1.15, 1) rotate(-8deg);
+}
+
+/* --- 16. Маленькие точки рядом с иконками — свечение --- */
+
+.card__panel-icon,
+.vadimus__panel-icon,
+.vadimus__regalia-icon,
+.notice__mark {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, background 0.3s ease;
+}
+
+.card__panel:hover .card__panel-icon,
+.vadimus__panel:hover .vadimus__panel-icon {
+    box-shadow: 0 0 20px -4px currentColor;
+}
+
+/* --- 17. Мелкие звёздочки / ромбы / треугольники — реагируют --- */
+
+.vadimus__regalia-item:hover .vadimus__regalia-icon,
+.notice__container:hover .notice__mark {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+}
+
+/* --- 18. Псевдо-подчёркивания ссылок и кнопок --- */
+
+.card__link::after,
+.bio__external::after,
+.modal__link::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -4px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card__link:hover::after,
+.bio__external:hover::after,
+.modal__link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+/* --- 19. Плавный отклик на все кнопки-переключатели --- */
+
+.country__toggle-icon,
+.card__toggle-icon,
+.ores__toggle-arrow,
+.ores-deep__arrow,
+.bio-card__btn-arrow {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+    will-change: transform;
+}
+
+.country__head:hover .country__toggle-icon,
+.card__details > summary:hover .card__toggle-icon {
+    transform: translate3d(2px, 0, 0);
+}
+
+/* --- 20. Параграфы-карточки карточек — курсор + подсветка --- */
+
+.card__panel-body p,
+.vadimus__panel-body p,
+.suk__text,
+.country__desc {
+    cursor: default;
+}
+
+.card__panel:hover .card__panel-body p,
+.vadimus__panel:hover .vadimus__panel-body p {
+    color: var(--text);
+}
+
+/* --- 21. Плавность всех без исключения переходов --- */
+
+.timeline__item,
+.node,
+.ores-deep__item,
+.subsection,
+.suk__card,
+.vadimus__panel,
+.vadimus__regalia-item,
+.card,
+.country,
+.population__info > div,
+.notice__container {
+    transition:
+        border-color 0.35s ease,
+        border-left-color 0.35s ease,
+        border-top-color 0.35s ease,
+        box-shadow 0.4s ease,
+        background 0.35s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* ============================================================ */
+/* БЛОК 43 — НАЗВАНИЯ: ЗАМЕТНЕЕ И ПЛАВНЕЕ                       */
+/* ============================================================ */
+
+/* Страна: 38px × 0.92 = 35px → 38px при hover */
+.country__name {
+    transform: translate3d(0, 0, 0) scale3d(0.92, 0.92, 1);
+    transition:
+        color 0.4s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, color;
+}
+
+.country:hover .country__name,
+.country[open] .country__name {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+/* Личность: 34px × 0.92 = 31px → 34px при hover */
+.card__name {
+    transform: translate3d(0, 0, 0) scale3d(0.92, 0.92, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition:
+        color 0.4s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .card__name {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+/* Вадимус: 62px × 0.92 = 57px → 62px при hover */
+.vadimus__name {
+    transform: translate3d(0, 0, 0) scale3d(0.92, 0.92, 1);
+    transition:
+        color 0.4s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, color;
+}
+
+.vadimus__top:hover .vadimus__name {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+.vadimus__head:hover .vadimus__name {
+    transform: translate3d(0, 0, 0) scale3d(1.04, 1.04, 1);
+}
+
+/* Модалка: 34px × 0.92 = 31px → 34px при hover */
+.modal__name {
+    transform: translate3d(0, 0, 0) scale3d(0.92, 0.92, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition:
+        color 0.4s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.modal__head:hover .modal__name {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    color: var(--green);
+}
+
+/* Заголовки секций (h2) — 62px × 0.93 = 58px → 62px */
+.section__head h2 {
+    transform: scale3d(0.93, 0.93, 1);
+    transition:
+        color 0.4s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section__head:hover h2 {
+    transform: scale3d(1, 1, 1);
+}
+
+/* Заголовки таймлайна (h3) — 30px × 0.93 = 28px → 30px */
+.timeline__item h3 {
+    transform: scale3d(0.93, 0.93, 1);
+    transition:
+        color 0.4s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline__item:hover h3 {
+    transform: scale3d(1, 1, 1);
+}
+
+/* Заголовки подсекций — 33px × 0.93 = 31px → 33px */
+.subsection__title {
+    transform: scale3d(0.93, 0.93, 1);
+    transition:
+        color 0.4s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.subsection:hover .subsection__title {
+    transform: scale3d(1, 1, 1);
+}
+
+/* Заголовки узлов инфраструктуры — 23px × 0.93 = 21px → 23px */
+.node__title {
+    transform: scale3d(0.93, 0.93, 1);
+    transition:
+        color 0.4s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.node:hover .node__title {
+    transform: scale3d(1, 1, 1);
+}
+
+/* Заголовок страны "Раскрыть досье" — уже масштаб у кнопки, отдельно */
+.country__head:hover .country__toggle {
+    transform: translate3d(6px, -3px, 0);
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
+}
+.country--lavrentiy .country__code img,
+.country--lavrentiy .card__gallery-wrap img {
+    filter: contrast(6) brightness(0.9);
+}
+.country--ledik .country__code img {
+    width: 100%;
+    height: 130%;
+    object-fit: cover;
+    object-position: center top;
+    margin-top: -25%;
+}
+/* ============================================================ */
+/* БЛОК 44 — ДОСЬЕ СТРАН В СТИЛЕ HOI4                           */
+/* ============================================================ */
+
+.country__hoi {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 22px 0;
+}
+
+/* --- Верхний ряд: Лидер + Статистика --- */
+
+.country__hoi-top {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 22px;
+    align-items: stretch;
+}
+
+.country__leader {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 22px;
+    background: linear-gradient(135deg, #faf7ff 0%, #efe8fa 100%);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--green);
+    border-radius: 12px;
+}
+
+.country--yaroslav .country__leader { border-left-color: var(--purple); }
+.country--cyber    .country__leader { border-left-color: var(--red); }
+.country--danyulyak .country__leader { border-left-color: var(--orange); }
+.country--ledik    .country__leader { border-left-color: var(--muted); }
+.country--lavrentiy .country__leader { border-left-color: #9B6DD6; }
+
+.country__leader-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--soft);
+    border: 1px solid var(--line);
+}
+
+.country__leader-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.country__leader-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--green);
+}
+
+.country--yaroslav .country__leader-title { color: var(--purple); }
+.country--cyber    .country__leader-title { color: var(--red); }
+.country--danyulyak .country__leader-title { color: var(--orange); }
+.country--ledik    .country__leader-title { color: var(--muted); }
+.country--lavrentiy .country__leader-title { color: #9B6DD6; }
+
+.country__leader-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.15;
+}
+
+.country__leader-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-2);
+    margin: 0;
+}
+
+/* --- Статистика --- */
+
+.country__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.country__stat {
+    position: relative;
+    padding: 16px 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--purple);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-left-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.country--vadimus .country__stat { border-left-color: var(--green); }
+.country--yaroslav .country__stat { border-left-color: var(--purple); }
+.country--cyber    .country__stat { border-left-color: var(--red); }
+.country--danyulyak .country__stat { border-left-color: var(--orange); }
+.country--ledik    .country__stat { border-left-color: var(--muted); }
+.country--lavrentiy .country__stat { border-left-color: #9B6DD6; }
+
+.country__stat:hover {
+    transform: translate3d(0, -3px, 0);
+    box-shadow: 0 15px 30px -20px rgba(80, 40, 140, 0.4);
+}
+
+.country__stat-label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.country__stat-value {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+}
+
+.country__stat-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* --- Национальные особенности --- */
+
+.country__spirits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.country__spirit {
+    padding: 18px 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--green);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-top-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.country--yaroslav .country__spirit { border-top-color: var(--purple); }
+.country--cyber    .country__spirit { border-top-color: var(--red); }
+.country--danyulyak .country__spirit { border-top-color: var(--orange); }
+.country--ledik    .country__spirit { border-top-color: var(--muted); }
+.country--lavrentiy .country__spirit { border-top-color: #9B6DD6; }
+
+.country__spirit:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 20px 40px -25px rgba(80, 40, 140, 0.4);
+}
+
+.country__spirit-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 700;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.country--yaroslav .country__spirit-icon { background: var(--purple); }
+.country--cyber    .country__spirit-icon { background: var(--red); }
+.country--danyulyak .country__spirit-icon { background: var(--orange); }
+.country--ledik    .country__spirit-icon { background: var(--muted); }
+.country--lavrentiy .country__spirit-icon { background: #9B6DD6; }
+
+.country__spirit:hover .country__spirit-icon {
+    transform: rotate(-10deg) scale3d(1.1, 1.1, 1);
+}
+
+.country__spirit-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.country__spirit-desc {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ============================================================ */
+/* ДОСЬЕ — ОФИЦИАЛЬНЫЙ РЕЕСТР В СТИЛЕ ЭНЦИКЛОПЕДИИ              */
+/* ============================================================ */
+
+.country__dossier {
+    display: flex;
+    flex-direction: column;
+    margin: 24px 0 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #ffffff 0%, #faf7ff 100%);
+    box-shadow: 0 20px 50px -40px rgba(80, 40, 140, 0.4);
+}
+
+/* --- Секция досье --- */
+
+.dossier__section {
+    position: relative;
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 28px;
+    padding: 32px 34px;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    transition: background 0.4s ease;
+}
+
+.dossier__section:last-child {
+    border-bottom: none;
+}
+
+.dossier__section:hover {
+    background: rgba(74, 222, 128, 0.025);
+}
+
+.country--yaroslav  .dossier__section:hover { background: rgba(179, 136, 255, 0.03); }
+.country--cyber     .dossier__section:hover { background: rgba(229, 57, 53, 0.025); }
+.country--danyulyak .dossier__section:hover { background: rgba(255, 181, 112, 0.03); }
+.country--ledik     .dossier__section:hover { background: rgba(139, 127, 174, 0.03); }
+.country--lavrentiy .dossier__section:hover { background: rgba(155, 109, 214, 0.03); }
+
+/* Декоративная вертикальная линия между номером и текстом */
+.dossier__section::after {
+    content: "";
+    position: absolute;
+    top: 34px;
+    bottom: 34px;
+    left: 105px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+    pointer-events: none;
+    transition: background 0.4s ease;
+}
+
+.dossier__section:hover::after {
+    background: linear-gradient(180deg, transparent, var(--green) 20%, var(--green) 80%, transparent);
+    opacity: 0.5;
+}
+
+.country--yaroslav  .dossier__section:hover::after { background: linear-gradient(180deg, transparent, var(--purple) 20%, var(--purple) 80%, transparent); }
+.country--cyber     .dossier__section:hover::after { background: linear-gradient(180deg, transparent, var(--red) 20%, var(--red) 80%, transparent); }
+.country--danyulyak .dossier__section:hover::after { background: linear-gradient(180deg, transparent, var(--orange) 20%, var(--orange) 80%, transparent); }
+.country--ledik     .dossier__section:hover::after { background: linear-gradient(180deg, transparent, var(--muted) 20%, var(--muted) 80%, transparent); }
+.country--lavrentiy .dossier__section:hover::after { background: linear-gradient(180deg, transparent, #9B6DD6 20%, #9B6DD6 80%, transparent); }
+
+/* --- Римский номер секции --- */
+
+.dossier__num {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: var(--green);
+    opacity: 0.35;
+    align-self: start;
+    margin-top: 2px;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, opacity;
+    text-rendering: geometricPrecision;
+    transition:
+        opacity 0.4s ease,
+        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        text-shadow 0.4s ease;
+}
+
+.dossier__section:hover .dossier__num {
+    opacity: 1;
+    transform: translate3d(-2px, 0, 0) scale3d(1.08, 1.08, 1);
+    text-shadow: 0 0 24px currentColor;
+}
+
+.country--yaroslav  .dossier__num { color: var(--purple); }
+.country--cyber     .dossier__num { color: var(--red); }
+.country--danyulyak .dossier__num { color: var(--orange); }
+.country--ledik     .dossier__num { color: var(--muted); }
+.country--lavrentiy .dossier__num { color: #9B6DD6; }
+
+/* --- Тело секции --- */
+
+.dossier__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+
+.dossier__title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.25;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+.dossier__title::before {
+    content: "";
+    width: 22px;
+    height: 3px;
+    background: var(--green);
+    border-radius: 2px;
+    flex-shrink: 0;
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease;
+}
+
+.dossier__section:hover .dossier__title {
+    color: var(--green);
+    border-color: var(--green);
+}
+
+.dossier__section:hover .dossier__title::before {
+    width: 36px;
+    background: var(--red);
+}
+
+.country--yaroslav  .dossier__title::before { background: var(--purple); }
+.country--yaroslav  .dossier__section:hover .dossier__title { color: var(--purple); border-color: var(--purple); }
+.country--yaroslav  .dossier__section:hover .dossier__title::before { background: var(--yellow); }
+
+.country--cyber .dossier__title::before { background: var(--red); }
+.country--cyber .dossier__section:hover .dossier__title { color: var(--red); border-color: var(--red); }
+.country--cyber .dossier__section:hover .dossier__title::before { background: var(--yellow); }
+
+.country--danyulyak .dossier__title::before { background: var(--orange); }
+.country--danyulyak .dossier__section:hover .dossier__title { color: var(--orange); border-color: var(--orange); }
+.country--danyulyak .dossier__section:hover .dossier__title::before { background: var(--yellow); }
+
+.country--ledik .dossier__title::before { background: var(--muted); }
+.country--ledik .dossier__section:hover .dossier__title { color: var(--muted); border-color: var(--muted); }
+
+.country--lavrentiy .dossier__title::before { background: #9B6DD6; }
+.country--lavrentiy .dossier__section:hover .dossier__title { color: #9B6DD6; border-color: #9B6DD6; }
+.country--lavrentiy .dossier__section:hover .dossier__title::before { background: var(--yellow); }
+
+/* --- Определения (dl/dt/dd) --- */
+
+.dossier__facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 34px;
+    margin: 0;
+    padding: 4px 0 0;
+}
+
+.dossier__fact {
+    display: grid;
+    grid-template-columns: minmax(140px, max-content) 1fr;
+    gap: 18px;
+    align-items: baseline;
+    padding: 10px 6px;
+    border-bottom: 1px dashed var(--line);
+    position: relative;
+    transition: background 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, background;
+}
+
+.dossier__fact:hover {
+    background: rgba(74, 222, 128, 0.06);
+    transform: translate3d(4px, 0, 0);
+}
+
+.country--yaroslav  .dossier__fact:hover { background: rgba(179, 136, 255, 0.06); }
+.country--cyber     .dossier__fact:hover { background: rgba(229, 57, 53, 0.05); }
+.country--danyulyak .dossier__fact:hover { background: rgba(255, 181, 112, 0.08); }
+.country--ledik     .dossier__fact:hover { background: rgba(139, 127, 174, 0.06); }
+.country--lavrentiy .dossier__fact:hover { background: rgba(155, 109, 214, 0.06); }
+
+.dossier__fact dt {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.4;
+    white-space: nowrap;
+    transition: color 0.35s ease;
+}
+
+.dossier__fact:hover dt {
+    color: var(--red);
+}
+
+.country--yaroslav  .dossier__fact:hover dt { color: var(--purple); }
+.country--cyber     .dossier__fact:hover dt { color: var(--red); }
+.country--danyulyak .dossier__fact:hover dt { color: var(--orange); }
+
+.dossier__fact dd {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text);
+    margin: 0;
+    transition: color 0.35s ease;
+}
+
+.dossier__fact:hover dd {
+    color: var(--green);
+}
+
+.country--yaroslav  .dossier__fact:hover dd { color: var(--purple); }
+.country--cyber     .dossier__fact:hover dd { color: var(--red); }
+.country--danyulyak .dossier__fact:hover dd { color: var(--orange); }
+.country--ledik     .dossier__fact:hover dd { color: var(--text-2); }
+.country--lavrentiy .dossier__fact:hover dd { color: #9B6DD6; }
+
+/* --- Обычный текст --- */
+
+.dossier__text {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text-2);
+    margin: 0;
+    transition: color 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, color;
+}
+
+.dossier__section:hover .dossier__text {
+    color: var(--text);
+}
+
+/* --- Примечание редакции --- */
+
+.dossier__note {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--muted);
+    font-style: italic;
+    margin: 6px 0 0;
+    padding: 10px 14px 10px 32px;
+    position: relative;
+    background: rgba(107, 95, 138, 0.05);
+    border-left: 3px solid rgba(107, 95, 138, 0.3);
+    border-radius: 0 8px 8px 0;
+    transition: background 0.4s ease, border-left-color 0.4s ease, color 0.4s ease;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, background;
+}
+
+.dossier__note::before {
+    content: "▸";
+    position: absolute;
+    left: 12px;
+    top: 11px;
+    color: var(--green);
+    font-size: 11px;
+    font-style: normal;
+    line-height: 1;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.35s ease;
+}
+
+.dossier__section:hover .dossier__note {
+    background: rgba(74, 222, 128, 0.07);
+    border-left-color: var(--green);
+    color: var(--text-2);
+}
+
+.dossier__section:hover .dossier__note::before {
+    transform: translate3d(4px, 0, 0) scale3d(1.15, 1.15, 1);
+    color: var(--red);
+}
+
+.country--yaroslav  .dossier__note::before { color: var(--purple); }
+.country--yaroslav  .dossier__section:hover .dossier__note { background: rgba(179, 136, 255, 0.08); border-left-color: var(--purple); }
+.country--yaroslav  .dossier__section:hover .dossier__note::before { color: var(--yellow); }
+
+.country--cyber .dossier__note::before { color: var(--red); }
+.country--cyber .dossier__section:hover .dossier__note { background: rgba(229, 57, 53, 0.06); border-left-color: var(--red); }
+.country--cyber .dossier__section:hover .dossier__note::before { color: var(--yellow); }
+
+.country--danyulyak .dossier__note::before { color: var(--orange); }
+.country--danyulyak .dossier__section:hover .dossier__note { background: rgba(255, 181, 112, 0.1); border-left-color: var(--orange); }
+
+.country--ledik .dossier__note::before { color: var(--muted); }
+.country--lavrentiy .dossier__note::before { color: #9B6DD6; }
+.country--lavrentiy .dossier__section:hover .dossier__note { background: rgba(155, 109, 214, 0.08); border-left-color: #9B6DD6; }
+
+/* --- Адаптив --- */
+
+@media (max-width: 900px) {
+    .dossier__section {
+        grid-template-columns: 62px 1fr;
+        gap: 18px;
+        padding: 24px 22px;
+    }
+    .dossier__section::after { left: 74px; top: 26px; bottom: 26px; }
+    .dossier__num { font-size: 34px; }
+    .dossier__title { font-size: 17px; padding-bottom: 10px; }
+    .dossier__title::before { width: 18px; }
+    .dossier__facts { grid-template-columns: 1fr; }
+    .dossier__fact { grid-template-columns: minmax(120px, max-content) 1fr; gap: 14px; }
+    .dossier__text { font-size: 13.5px; }
+    .dossier__note { font-size: 12px; padding: 8px 12px 8px 26px; }
+    .dossier__note::before { left: 10px; top: 9px; }
+}
+
+@media (max-width: 700px) {
+    .dossier__section {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 20px 18px;
+    }
+    .dossier__section::after { display: none; }
+    .dossier__num { font-size: 28px; margin-top: 0; }
+    .dossier__title { font-size: 15px; letter-spacing: 0; }
+    .dossier__title::before { width: 14px; height: 2px; }
+    .dossier__fact { grid-template-columns: 1fr; gap: 4px; padding: 8px 4px; }
+    .dossier__fact dt { font-size: 9.5px; }
+    .dossier__fact dd { font-size: 13px; }
+    .dossier__text { font-size: 13px; }
+    .dossier__note { font-size: 11.5px; }
+}
+
+/* --- Адаптив --- */
+
+@media (max-width: 900px) {
+    .country__hoi-top { grid-template-columns: 1fr; }
+    .country__spirits { grid-template-columns: 1fr; }
+    .country__stats { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 700px) {
+    .country__stats { grid-template-columns: 1fr; }
+    .country__decisions { padding: 16px 18px; }
+    .country__decision { grid-template-columns: 1fr; gap: 6px; }
+    .country__decision-tag { justify-self: flex-start; }
+}
+
+/* ============================================================ */
+/* БЛОК 45 — ФЛАГ, ГЕРБ, АРХИВ, ДОП. АНИМАЦИИ                   */
+/* ============================================================ */
+
+.country__hoi-top {
+    display: grid;
+    grid-template-columns: 1fr 260px 260px;
+    gap: 22px;
+    align-items: stretch;
+}
+
+.country__leader {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    background: linear-gradient(135deg, #faf7ff 0%, #efe8fa 100%);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--green);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: border-left-color 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+
+.country__leader::before {
+    content: "";
+    position: absolute;
+    top: -40%; right: -40%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(74, 222, 128, 0.12), transparent 70%);
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.country__leader:hover {
+    transform: translate3d(0, -3px, 0);
+    box-shadow: 0 22px 40px -25px rgba(80, 40, 140, 0.4);
+}
+
+.country__leader:hover::before {
+    transform: translate3d(-20px, 20px, 0);
+}
+
+.country--yaroslav .country__leader { border-left-color: var(--purple); }
+.country--cyber    .country__leader { border-left-color: var(--red); }
+.country--danyulyak .country__leader { border-left-color: var(--orange); }
+.country--ledik    .country__leader { border-left-color: var(--muted); }
+.country--lavrentiy .country__leader { border-left-color: #9B6DD6; }
+
+.country__leader-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--green);
+    transition: letter-spacing 0.35s ease;
+}
+
+.country__leader:hover .country__leader-title {
+    letter-spacing: 0.22em;
+}
+
+.country--yaroslav .country__leader-title { color: var(--purple); }
+.country--cyber    .country__leader-title { color: var(--red); }
+.country--danyulyak .country__leader-title { color: var(--orange); }
+.country--ledik    .country__leader-title { color: var(--muted); }
+.country--lavrentiy .country__leader-title { color: #9B6DD6; }
+
+.country__leader-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.15;
+    transition: color 0.35s ease;
+}
+
+.country__leader:hover .country__leader-name { color: var(--green); }
+.country--yaroslav .country__leader:hover .country__leader-name { color: var(--purple); }
+.country--cyber    .country__leader:hover .country__leader-name { color: var(--red); }
+.country--danyulyak .country__leader:hover .country__leader-name { color: var(--orange); }
+
+.country__leader-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-2);
+    margin: 0;
+}
+
+/* --- Флаг и Герб --- */
+
+.country__symbols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    grid-column: 2 / -1;
+}
+
+.country__symbol {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    transition: border-color 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.country__symbol:hover {
+    border-color: var(--green);
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 22px 40px -25px rgba(74, 222, 128, 0.5);
+}
+
+.country--yaroslav .country__symbol:hover { border-color: var(--purple); box-shadow: 0 22px 40px -25px rgba(179, 136, 255, 0.5); }
+.country--cyber    .country__symbol:hover { border-color: var(--red); box-shadow: 0 22px 40px -25px rgba(229, 57, 53, 0.5); }
+.country--danyulyak .country__symbol:hover { border-color: var(--orange); box-shadow: 0 22px 40px -25px rgba(255, 181, 112, 0.5); }
+
+.country__symbol-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    transition: color 0.35s ease;
+}
+
+.country__symbol:hover .country__symbol-title { color: var(--green); }
+.country--yaroslav .country__symbol:hover .country__symbol-title { color: var(--purple); }
+.country--cyber    .country__symbol:hover .country__symbol-title { color: var(--red); }
+.country--danyulyak .country__symbol:hover .country__symbol-title { color: var(--orange); }
+
+.country__symbol-slot {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--soft);
+    border: 2px dashed var(--line);
+    display: grid;
+    place-items: center;
+    transition: border-color 0.35s ease, border-style 0.35s ease, background 0.35s ease;
+}
+
+.country__symbol:hover .country__symbol-slot {
+    border-color: var(--green);
+    border-style: solid;
+    background: rgba(74, 222, 128, 0.04);
+}
+
+.country--yaroslav .country__symbol:hover .country__symbol-slot { border-color: var(--purple); background: rgba(179, 136, 255, 0.04); }
+.country--cyber    .country__symbol:hover .country__symbol-slot { border-color: var(--red); background: rgba(229, 57, 53, 0.04); }
+.country--danyulyak .country__symbol:hover .country__symbol-slot { border-color: var(--orange); background: rgba(255, 181, 112, 0.04); }
+
+.country__symbol-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    padding: 8px;
+}
+
+.country__symbol-empty {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    padding: 12px;
+    line-height: 1.4;
+    transition: color 0.35s ease;
+}
+
+.country__symbol:hover .country__symbol-empty { color: var(--text-2); }
+
+/* --- Статистика (территория, не владелец) --- */
+
+.country__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    grid-column: 1 / -1;
+}
+
+/* --- АРХИВ (бывшая галерея) --- */
+
+.country__archive {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 22px;
+    background: linear-gradient(135deg, #faf7ff 0%, #efe8fa 100%);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--purple);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.country--vadimus .country__archive { border-left-color: var(--green); }
+.country--yaroslav .country__archive { border-left-color: var(--purple); }
+.country--cyber    .country__archive { border-left-color: var(--red); }
+.country--danyulyak .country__archive { border-left-color: var(--orange); }
+.country--ledik    .country__archive { border-left-color: var(--muted); }
+.country--lavrentiy .country__archive { border-left-color: #9B6DD6; }
+
+.country__archive-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line);
+}
+
+.country__archive-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.35s ease, letter-spacing 0.4s ease;
+}
+
+.country__archive-title::before {
+    content: "◆";
+    color: var(--purple);
+    font-size: 10px;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.country__archive:hover .country__archive-title {
+    color: var(--purple);
+    letter-spacing: 0.24em;
+}
+
+.country__archive:hover .country__archive-title::before {
+    transform: rotate(180deg);
+}
+
+.country__archive-count {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.country__archive .card__gallery-wrap {
+    background: radial-gradient(ellipse 80% 70% at 50% 40%, #1a0d28 0%, #0a0514 100%);
+    border-radius: 10px;
+}
+
+/* --- Доп. анимации --- */
+
+@keyframes country-status-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 currentColor; }
+    50%      { box-shadow: 0 0 0 4px transparent; }
+}
+
+.country:hover .country__status,
+.country[open] .country__status {
+    animation: country-status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes country-fade-in {
+    from { opacity: 0; transform: translate3d(0, 12px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.country[open] .country__hoi > * {
+    animation: country-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.country[open] .country__hoi > *:nth-child(1) { animation-delay: 0.05s; }
+.country[open] .country__hoi > *:nth-child(2) { animation-delay: 0.1s; }
+.country[open] .country__hoi > *:nth-child(3) { animation-delay: 0.15s; }
+.country[open] .country__hoi > *:nth-child(4) { animation-delay: 0.2s; }
+
+.country[open] .country__archive {
+    animation: country-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.25s backwards;
+}
+
+.country:hover {
+    box-shadow:
+        0 22px 60px -30px rgba(80, 40, 140, 0.4),
+        0 0 60px -20px rgba(74, 222, 128, 0.35);
+}
+
+.country--yaroslav:hover { box-shadow: 0 22px 60px -30px rgba(80, 40, 140, 0.4), 0 0 60px -20px rgba(179, 136, 255, 0.35); }
+.country--cyber:hover    { box-shadow: 0 22px 60px -30px rgba(80, 40, 140, 0.4), 0 0 60px -20px rgba(229, 57, 53, 0.35); }
+.country--danyulyak:hover { box-shadow: 0 22px 60px -30px rgba(80, 40, 140, 0.4), 0 0 60px -20px rgba(255, 181, 112, 0.35); }
+
+/* --- Адаптив --- */
+
+@media (max-width: 1100px) {
+    .country__hoi-top {
+        grid-template-columns: 1fr 1fr;
+    }
+    .country__leader { grid-column: 1 / -1; }
+}
+
+@media (max-width: 900px) {
+    .country__hoi-top { grid-template-columns: 1fr; }
+    .country__symbols { grid-template-columns: 1fr 1fr; grid-column: 1 / -1; }
+    .country__stats { grid-template-columns: 1fr 1fr; grid-column: 1 / -1; }
+    .country__spirits { grid-template-columns: 1fr; }
+    .country__archive { padding: 16px; }
+}
+
+@media (max-width: 700px) {
+    .country__stats { grid-template-columns: 1fr; }
+    .country__symbols { grid-template-columns: 1fr; }
+}

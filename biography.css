@@ -1,0 +1,1088 @@
+/* ============================================================ */
+/* BIOS — секция «Биографии» в стиле сайта                      */
+/* ============================================================ */
+
+.bios {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.bio {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 32px;
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    align-items: start;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bio:hover {
+    border-color: var(--green);
+    box-shadow: 0 20px 40px -25px rgba(80, 40, 140, 0.35);
+}
+
+/* --- Фото --- */
+
+.bio__photo {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--soft);
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.bio:hover .bio__photo {
+    border-color: var(--green);
+}
+
+.bio__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.5s ease-out;
+}
+
+.bio:hover .bio__photo img {
+    transform: scale3d(1.05, 1.05, 1);
+}
+
+.bio__photo--lavrentiy img {
+    object-position: center 20%;
+    filter: contrast(6) brightness(0.9);
+}
+
+.bio__photo--ivan img { object-position: center 30%; }
+.bio__photo--ledik img { object-position: center 50%; }
+
+.bio__photo-stamp {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* --- Правая часть --- */
+
+.bio__body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+}
+
+.bio__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.bio__name {
+    font-size: 30px;
+    color: var(--text);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.bio:hover .bio__name {
+    color: var(--green);
+}
+
+.bio__status {
+    display: inline-block;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.bio__status--partner { color: var(--green); background: rgba(74, 222, 128, 0.08); }
+.bio__status--enemy   { color: var(--red);   background: rgba(229, 57, 53, 0.08); }
+.bio__status--neutral { color: #4A7BC8;      background: rgba(74, 123, 200, 0.08); }
+.bio__status--dead    { color: #9B6DD6;      background: rgba(155, 109, 214, 0.08); }
+
+.bio__tagline {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-2);
+    margin: 0;
+}
+
+/* --- Факты (как в личностях, но в 2 колонки) --- */
+
+.bio__facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 32px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.bio__fact {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 18px;
+    align-items: baseline;
+    font-size: 14px;
+    color: var(--text-2);
+}
+
+.bio__fact > span:first-child {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-family: "Space Grotesk", sans-serif;
+    transition: color 0.25s ease;
+}
+
+.bio:hover .bio__fact > span:first-child {
+    color: var(--green);
+}
+
+.bio__fact > span:last-child {
+    color: var(--text);
+    line-height: 1.45;
+}
+
+/* --- Секции: Территория / Недра / Биография --- */
+
+.bio__section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bio__section-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin: 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.bio__section-title::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    background: var(--green);
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.bio:hover .bio__section-title {
+    color: var(--red);
+}
+
+.bio:hover .bio__section-title::before {
+    width: 20px;
+    background: var(--red);
+}
+
+.bio__section p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-2);
+    margin: 0;
+}
+
+.bio__section .bio__note {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 4px;
+}
+
+/* --- Теги объектов внутри секций --- */
+
+.bio__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 4px 0 0;
+    list-style: none;
+    padding: 0;
+}
+
+.bio__tags li {
+    font-size: 12.5px;
+    line-height: 1.4;
+    padding: 4px 11px;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    border-radius: 20px;
+    color: var(--text-2);
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    cursor: default;
+}
+
+.bio__tags li:hover {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+}
+
+/* --- Галерея — маленькие превью в ряд --- */
+
+.bio__gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+}
+
+.bio__gallery-item {
+    width: 76px;
+    height: 76px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--soft);
+    transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+}
+
+.bio__gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.bio__gallery-item:hover {
+    border-color: var(--green);
+    transform: scale3d(1.06, 1.06, 1);
+}
+
+.bio__gallery-item--empty {
+    display: grid;
+    place-items: center;
+    font-size: 8px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.2;
+    padding: 4px;
+    background:
+        repeating-linear-gradient(45deg, rgba(107, 95, 138, 0.05) 0, rgba(107, 95, 138, 0.05) 4px, transparent 4px, transparent 8px);
+    cursor: default;
+}
+
+.bio__gallery-item--empty:hover {
+    transform: none;
+    border-color: var(--line);
+}
+
+/* --- Комментарий --- */
+
+.bio__quote {
+    padding: 14px 20px 14px 22px;
+    background: rgba(74, 222, 128, 0.06);
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.6;
+    font-style: italic;
+    transition: background 0.3s ease, border-left-color 0.3s ease;
+}
+
+.bio:hover .bio__quote {
+    background: rgba(74, 222, 128, 0.12);
+    border-left-color: var(--red);
+}
+
+.bio__quote-mark {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 26px;
+    line-height: 0;
+    color: var(--green);
+    margin-right: 6px;
+    vertical-align: -5px;
+    transition: color 0.3s ease;
+}
+
+.bio:hover .bio__quote-mark {
+    color: var(--red);
+}
+
+/* --- Внешняя ссылка --- */
+
+.bio__external {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--red);
+    border-bottom: 2px solid var(--red);
+    padding-bottom: 2px;
+    transition: color 0.25s ease, border-color 0.25s ease, letter-spacing 0.25s ease;
+}
+
+.bio__external:hover {
+    color: var(--black);
+    border-color: var(--black);
+    letter-spacing: 0.12em;
+}
+
+/* --- Адаптив --- */
+
+@media (max-width: 900px) {
+    .bio {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 20px;
+    }
+
+    .bio__photo {
+        max-width: 220px;
+    }
+
+    .bio__facts {
+        grid-template-columns: 1fr;
+    }
+
+    .bio__name { font-size: 24px; }
+}
+
+/* ============================================================ */
+/* БЛОК 44 — ДОСЬЕ СТРАН В СТИЛЕ HOI4 (флаг и герб центральные) */
+/* ============================================================ */
+
+.country__hoi {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 22px 0;
+}
+
+/* ============================================================ */
+/* ЦЕНТРАЛЬНЫЙ БЛОК: ФЛАГ + ГЕРБ + ЛИДЕР                        */
+/* ============================================================ */
+
+.country__hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 30px 20px 26px;
+    background: linear-gradient(135deg, #faf7ff 0%, #efe8fa 100%);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--green);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.country--yaroslav .country__hero { border-top-color: var(--purple); }
+.country--cyber    .country__hero { border-top-color: var(--red); }
+.country--danyulyak .country__hero { border-top-color: var(--orange); }
+.country--ledik    .country__hero { border-top-color: var(--muted); }
+.country--lavrentiy .country__hero { border-top-color: #9B6DD6; }
+
+.country__hero::before {
+    content: "";
+    position: absolute;
+    top: -50%; left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(74, 222, 128, 0.1), transparent 70%);
+    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.country--yaroslav .country__hero::before { background: radial-gradient(ellipse, rgba(179, 136, 255, 0.1), transparent 70%); }
+.country--cyber    .country__hero::before { background: radial-gradient(ellipse, rgba(229, 57, 53, 0.1), transparent 70%); }
+.country--danyulyak .country__hero::before { background: radial-gradient(ellipse, rgba(255, 181, 112, 0.1), transparent 70%); }
+
+.country__hero:hover::before {
+    transform: translate3d(-50%, 40px, 0) scale3d(1.2, 1.2, 1);
+}
+
+/* Флаг и герб — центральные, крупные */
+.country__symbols {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    z-index: 1;
+}
+
+.country__symbol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 320px;
+    flex: 1 1 260px;
+    transition:
+        border-color 0.4s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s ease;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.country__symbol:hover {
+    border-color: var(--green);
+    transform: translate3d(0, -6px, 0) scale3d(1.03, 1.03, 1);
+    box-shadow: 0 30px 60px -25px rgba(74, 222, 128, 0.55);
+}
+
+.country--yaroslav .country__symbol:hover { border-color: var(--purple); box-shadow: 0 30px 60px -25px rgba(179, 136, 255, 0.55); }
+.country--cyber    .country__symbol:hover { border-color: var(--red); box-shadow: 0 30px 60px -25px rgba(229, 57, 53, 0.55); }
+.country--danyulyak .country__symbol:hover { border-color: var(--orange); box-shadow: 0 30px 60px -25px rgba(255, 181, 112, 0.55); }
+
+.country__symbol-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    transition: color 0.4s ease, letter-spacing 0.5s ease;
+}
+
+.country__symbol:hover .country__symbol-title {
+    color: var(--green);
+    letter-spacing: 0.3em;
+}
+
+.country--yaroslav .country__symbol:hover .country__symbol-title { color: var(--purple); }
+.country--cyber    .country__symbol:hover .country__symbol-title { color: var(--red); }
+.country--danyulyak .country__symbol:hover .country__symbol-title { color: var(--orange); }
+
+/* Слот — большой, подстраивается под картинку */
+.country__symbol-slot {
+    position: relative;
+    width: 100%;
+    min-height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--soft);
+    border: 2px dashed var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    transition: border-color 0.4s ease, border-style 0.4s ease, background 0.4s ease;
+}
+
+.country__symbol:hover .country__symbol-slot {
+    border-color: var(--green);
+    border-style: solid;
+    background: rgba(74, 222, 128, 0.04);
+}
+
+.country--yaroslav .country__symbol:hover .country__symbol-slot { border-color: var(--purple); background: rgba(179, 136, 255, 0.04); }
+.country--cyber    .country__symbol:hover .country__symbol-slot { border-color: var(--red); background: rgba(229, 57, 53, 0.04); }
+.country--danyulyak .country__symbol:hover .country__symbol-slot { border-color: var(--orange); background: rgba(255, 181, 112, 0.04); }
+
+.country__symbol-slot img {
+    max-width: 100%;
+    max-height: 340px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.country__symbol:hover .country__symbol-slot img {
+    transform: scale3d(1.05, 1.05, 1);
+}
+
+.country__symbol-empty {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    padding: 20px;
+    line-height: 1.5;
+    transition: color 0.4s ease;
+}
+
+.country__symbol:hover .country__symbol-empty { color: var(--text-2); }
+
+/* Лидер — снизу, компактно, по центру */
+.country__leader {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 28px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--green);
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    transition: border-left-color 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.country__leader:hover {
+    transform: translate3d(0, -3px, 0);
+    box-shadow: 0 22px 40px -25px rgba(80, 40, 140, 0.4);
+}
+
+.country--yaroslav .country__leader { border-left-color: var(--purple); }
+.country--cyber    .country__leader { border-left-color: var(--red); }
+.country--danyulyak .country__leader { border-left-color: var(--orange); }
+.country--ledik    .country__leader { border-left-color: var(--muted); }
+.country--lavrentiy .country__leader { border-left-color: #9B6DD6; }
+
+.country__leader-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    transition: letter-spacing 0.4s ease;
+}
+
+.country__leader:hover .country__leader-title { letter-spacing: 0.26em; }
+
+.country--yaroslav .country__leader-title { color: var(--purple); }
+.country--cyber    .country__leader-title { color: var(--red); }
+.country--danyulyak .country__leader-title { color: var(--orange); }
+.country--ledik    .country__leader-title { color: var(--muted); }
+.country--lavrentiy .country__leader-title { color: #9B6DD6; }
+
+.country__leader-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.1;
+    transition: color 0.4s ease;
+}
+
+.country__leader:hover .country__leader-name { color: var(--green); }
+.country--yaroslav .country__leader:hover .country__leader-name { color: var(--purple); }
+.country--cyber    .country__leader:hover .country__leader-name { color: var(--red); }
+.country--danyulyak .country__leader:hover .country__leader-name { color: var(--orange); }
+
+.country__leader-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-2);
+    margin: 0;
+    max-width: 480px;
+}
+
+/* ============================================================ */
+/* СТАТИСТИКА                                                   */
+/* ============================================================ */
+
+.country__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.country__stat {
+    position: relative;
+    padding: 16px 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--purple);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-left-color 0.3s ease, box-shadow 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.country--vadimus .country__stat { border-left-color: var(--green); }
+.country--yaroslav .country__stat { border-left-color: var(--purple); }
+.country--cyber    .country__stat { border-left-color: var(--red); }
+.country--danyulyak .country__stat { border-left-color: var(--orange); }
+.country--ledik    .country__stat { border-left-color: var(--muted); }
+.country--lavrentiy .country__stat { border-left-color: #9B6DD6; }
+
+.country__stat:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 18px 35px -22px rgba(80, 40, 140, 0.45);
+}
+
+.country__stat-label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.35s ease, letter-spacing 0.4s ease;
+}
+
+.country__stat:hover .country__stat-label {
+    color: var(--green);
+    letter-spacing: 0.2em;
+}
+
+.country--yaroslav .country__stat:hover .country__stat-label { color: var(--purple); }
+.country--cyber    .country__stat:hover .country__stat-label { color: var(--red); }
+.country--danyulyak .country__stat:hover .country__stat-label { color: var(--orange); }
+
+.country__stat-value {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+}
+
+.country__stat-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* ============================================================ */
+/* НАЦИОНАЛЬНЫЕ ОСОБЕННОСТИ                                     */
+/* ============================================================ */
+
+.country__spirits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.country__spirit {
+    padding: 20px 22px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--green);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-top-color 0.35s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.country--yaroslav .country__spirit { border-top-color: var(--purple); }
+.country--cyber    .country__spirit { border-top-color: var(--red); }
+.country--danyulyak .country__spirit { border-top-color: var(--orange); }
+.country--ledik    .country__spirit { border-top-color: var(--muted); }
+.country--lavrentiy .country__spirit { border-top-color: #9B6DD6; }
+
+.country__spirit:hover {
+    transform: translate3d(0, -5px, 0);
+    box-shadow: 0 25px 50px -25px rgba(80, 40, 140, 0.45);
+}
+
+.country__spirit-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 700;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+.country--yaroslav .country__spirit-icon { background: var(--purple); }
+.country--cyber    .country__spirit-icon { background: var(--red); }
+.country--danyulyak .country__spirit-icon { background: var(--orange); }
+.country--ledik    .country__spirit-icon { background: var(--muted); }
+.country--lavrentiy .country__spirit-icon { background: #9B6DD6; }
+
+.country__spirit:hover .country__spirit-icon {
+    transform: rotate(-14deg) scale3d(1.15, 1.15, 1);
+    box-shadow: 0 0 30px -4px currentColor;
+}
+
+.country__spirit-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.3;
+    transition: color 0.35s ease;
+}
+
+.country__spirit:hover .country__spirit-name { color: var(--green); }
+.country--yaroslav .country__spirit:hover .country__spirit-name { color: var(--purple); }
+.country--cyber    .country__spirit:hover .country__spirit-name { color: var(--red); }
+.country--danyulyak .country__spirit:hover .country__spirit-name { color: var(--orange); }
+
+.country__spirit-desc {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* ============================================================ */
+/* РЕШЕНИЯ                                                      */
+/* ============================================================ */
+
+.country__decisions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px 26px;
+    background: rgba(74, 222, 128, 0.04);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--cyan);
+    border-radius: 12px;
+}
+
+.country--yaroslav .country__decisions { border-left-color: var(--purple); }
+.country--cyber    .country__decisions { border-left-color: var(--red); }
+.country--danyulyak .country__decisions { border-left-color: var(--orange); }
+.country--ledik    .country__decisions { border-left-color: var(--muted); }
+.country--lavrentiy .country__decisions { border-left-color: #9B6DD6; }
+
+.country__decisions-head {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--line);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: letter-spacing 0.5s ease;
+}
+
+.country__decisions:hover .country__decisions-head { letter-spacing: 0.24em; }
+
+.country__decisions-head::before {
+    content: "";
+    width: 16px;
+    height: 3px;
+    background: var(--cyan);
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.country__decision {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 18px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--line);
+    align-items: baseline;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.country__decision:last-child { border-bottom: none; }
+
+.country__decision:hover { transform: translate3d(8px, 0, 0); }
+
+.country__decision-tag {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    padding: 4px 12px;
+    border: 1px solid currentColor;
+    border-radius: 12px;
+    white-space: nowrap;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.35s ease;
+}
+
+.country__decision:hover .country__decision-tag {
+    background: var(--green);
+    color: #fff;
+    transform: scale3d(1.05, 1.05, 1);
+}
+
+.country--yaroslav .country__decision-tag { color: var(--purple); }
+.country--cyber    .country__decision-tag { color: var(--red); }
+.country--danyulyak .country__decision-tag { color: var(--orange); }
+.country--ledik    .country__decision-tag { color: var(--muted); }
+.country--lavrentiy .country__decision-tag { color: #9B6DD6; }
+
+.country__decision-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-2);
+    transition: color 0.35s ease;
+}
+
+.country__decision:hover .country__decision-text { color: var(--text); }
+
+/* ============================================================ */
+/* АРХИВ ТЕРРИТОРИИ                                              */
+/* ============================================================ */
+
+.country__archive {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 22px 24px;
+    background: linear-gradient(135deg, #faf7ff 0%, #efe8fa 100%);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--purple);
+    border-radius: 12px;
+}
+
+.country--vadimus .country__archive { border-left-color: var(--green); }
+.country--yaroslav .country__archive { border-left-color: var(--purple); }
+.country--cyber    .country__archive { border-left-color: var(--red); }
+.country--danyulyak .country__archive { border-left-color: var(--orange); }
+.country--ledik    .country__archive { border-left-color: var(--muted); }
+.country--lavrentiy .country__archive { border-left-color: #9B6DD6; }
+
+.country__archive-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line);
+}
+
+.country__archive-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.4s ease, letter-spacing 0.5s ease;
+}
+
+.country__archive-title::before {
+    content: "◆";
+    color: var(--purple);
+    font-size: 11px;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s ease;
+}
+
+.country__archive:hover .country__archive-title {
+    color: var(--purple);
+    letter-spacing: 0.24em;
+}
+
+.country__archive:hover .country__archive-title::before {
+    transform: rotate(180deg);
+}
+
+.country__archive-count {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.35s ease;
+}
+
+.country__archive .card__gallery-wrap {
+    background: radial-gradient(ellipse 80% 70% at 50% 40%, #1a0d28 0%, #0a0514 100%);
+    border-radius: 10px;
+}
+
+/* ============================================================ */
+/* СВЁРНУТАЯ КАРТОЧКА — ФОТО БОЛЬШЕ                             */
+/* ============================================================ */
+
+.country__code {
+    width: 200px;
+    height: 200px;
+    border-radius: 24px;
+}
+
+.country__head {
+    grid-template-columns: 200px 1fr auto;
+    gap: 32px;
+    padding: 32px 34px;
+}
+
+.country:has(.country__code--duo) .country__head {
+    grid-template-columns: 300px 1fr auto;
+}
+
+.country__code--duo {
+    width: 300px;
+    height: 200px;
+    gap: 10px;
+}
+
+.country__code--duo img {
+    height: 200px;
+    border-radius: 16px;
+}
+
+.country__name { font-size: 42px; }
+.country__short { font-size: 17px; }
+
+/* ============================================================ */
+/* ДОП. АНИМАЦИИ                                                */
+/* ============================================================ */
+
+@keyframes country-status-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+    50%      { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0.15); }
+}
+
+.country:hover .country__status,
+.country[open] .country__status {
+    animation: country-status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes country-fade-in {
+    from { opacity: 0; transform: translate3d(0, 16px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.country[open] .country__hoi > * {
+    animation: country-fade-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.country[open] .country__hoi > *:nth-child(1) { animation-delay: 0.05s; }
+.country[open] .country__hoi > *:nth-child(2) { animation-delay: 0.15s; }
+.country[open] .country__hoi > *:nth-child(3) { animation-delay: 0.25s; }
+.country[open] .country__hoi > *:nth-child(4) { animation-delay: 0.35s; }
+
+.country[open] .country__archive {
+    animation: country-fade-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.45s backwards;
+}
+
+.country[open] .country__quote {
+    animation: country-fade-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.55s backwards;
+}
+
+.country[open] .country__stat {
+    animation: country-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.country[open] .country__stat:nth-child(1) { animation-delay: 0.1s; }
+.country[open] .country__stat:nth-child(2) { animation-delay: 0.15s; }
+.country[open] .country__stat:nth-child(3) { animation-delay: 0.2s; }
+.country[open] .country__stat:nth-child(4) { animation-delay: 0.25s; }
+.country[open] .country__stat:nth-child(5) { animation-delay: 0.3s; }
+.country[open] .country__stat:nth-child(6) { animation-delay: 0.35s; }
+
+.country[open] .country__symbol {
+    animation: country-fade-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+.country[open] .country__symbol:nth-child(1) { animation-delay: 0.1s; }
+.country[open] .country__symbol:nth-child(2) { animation-delay: 0.2s; }
+
+/* --- Адаптив --- */
+
+@media (max-width: 1100px) {
+    .country__stats { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 900px) {
+    .country__code { width: 140px; height: 140px; }
+    .country__head { grid-template-columns: 140px 1fr; gap: 20px; padding: 22px 24px; }
+    .country:has(.country__code--duo) .country__head { grid-template-columns: 220px 1fr; }
+    .country__code--duo { width: 220px; height: 140px; gap: 8px; }
+    .country__code--duo img { height: 140px; border-radius: 12px; }
+    .country__name { font-size: 26px; }
+
+    .country__symbols { gap: 20px; }
+    .country__symbol { flex: 1 1 200px; max-width: 100%; }
+    .country__symbol-slot { min-height: 180px; padding: 12px; }
+    .country__symbol-slot img { max-height: 240px; }
+
+    .country__stats { grid-template-columns: 1fr 1fr; }
+    .country__spirits { grid-template-columns: 1fr; }
+    .country__leader-name { font-size: 22px; }
+}
+
+@media (max-width: 700px) {
+    .country__code { width: 100px; height: 100px; border-radius: 14px; }
+    .country__head { grid-template-columns: 100px 1fr; padding: 18px 20px; }
+    .country__code--duo { width: 160px; height: 100px; }
+    .country__code--duo img { height: 100px; border-radius: 10px; }
+    .country__name { font-size: 20px; }
+    .country__stats { grid-template-columns: 1fr; }
+    .country__symbols { flex-direction: column; gap: 16px; }
+    .country__symbol { max-width: 100%; flex: 1 1 100%; }
+    .country__symbol-slot { min-height: 160px; }
+    .country__symbol-slot img { max-height: 200px; }
+    .country__decisions { padding: 16px 18px; }
+    .country__decision { grid-template-columns: 1fr; gap: 6px; }
+    .country__decision-tag { justify-self: flex-start; }
+}

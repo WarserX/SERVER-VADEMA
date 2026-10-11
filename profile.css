@@ -1,0 +1,972 @@
+/* ============================================================ */
+/* БЛОК 12 — ВАДИМУС                                            */
+/* ============================================================ */
+
+.vadimus {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* ===== ВЕРХ ===== */
+
+.vadimus__top {
+    display: grid;
+    grid-template-columns: 484px 1fr;
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 22px 66px -33px rgba(80, 40, 140, 0.3);
+
+    transform: translate3d(0, 0, 0) scale3d(0.97, 0.97, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+
+    transition:
+        transform 1s cubic-bezier(0.65, 0, 0.35, 1),
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.vadimus__top:hover {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    border-color: var(--green);
+    box-shadow: 0 22px 66px -33px rgba(80, 40, 140, 0.3), 0 0 60px -20px rgba(74, 222, 128, 0.35);
+}
+
+@media (max-width: 900px) {
+    .vadimus__top,
+    .vadimus__top:hover {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+}
+
+/* ===== ПОРТРЕТ ===== */
+
+.vadimus__portrait {
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 44px 44px 40px;
+    background: var(--soft);
+    transition: background 0.5s ease;
+}
+
+.vadimus__top:hover .vadimus__portrait {
+    background: rgba(74, 222, 128, 0.08);
+}
+
+/* Фото — своя анимация при hover на само фото */
+.vadimus__portrait-img {
+    width: 100%;
+    max-width: 374px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border: 1px solid var(--line);
+    background: #000;
+    border-radius: 52px;
+    box-shadow: 0 22px 44px -22px rgba(80, 40, 140, 0.4);
+
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+
+    transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.vadimus__top:hover .vadimus__portrait-img {
+    border-color: var(--green);
+    box-shadow: 0 22px 44px -22px rgba(80, 40, 140, 0.4), 0 0 40px -10px rgba(74, 222, 128, 0.5);
+}
+
+.vadimus__portrait-img:hover {
+    transform: translate3d(0, 0, 0) scale3d(1.04, 1.04, 1);
+    border-color: var(--green);
+    box-shadow:
+        0 22px 44px -22px rgba(80, 40, 140, 0.4),
+        0 0 60px -10px rgba(74, 222, 128, 0.6);
+}
+
+.vadimus__stamp {
+    display: block;
+    margin-top: 18px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    white-space: nowrap;
+    transition: color 0.5s ease, letter-spacing 0.5s ease;
+}
+
+.vadimus__top:hover .vadimus__stamp {
+    color: var(--green);
+    letter-spacing: 0.1em;
+}
+
+/* ===== ГАЛЕРЕЯ — во всю ширину, под верхним блоком ===== */
+
+.vadimus__gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.vadimus__gallery .card__gallery-label {
+    width: auto;
+    margin-bottom: 0;
+}
+
+.vadimus__gallery-wrap {
+    height: clamp(380px, 60vh, 620px);
+    background: radial-gradient(ellipse 80% 70% at 50% 40%, #0d1a10 0%, #050d08 100%);
+    border-radius: 14px;
+}
+
+/* Слайды — как в биографиях, чуть шире для большого контейнера */
+.vadimus__gallery-wrap .card__gallery-slide {
+    width: 58%;
+    height: 84%;
+}
+
+/* Активное фото — обводка зелёная */
+.vadimus__gallery-wrap .card__gallery-slide.is-active img {
+    border-color: var(--green);
+}
+
+/* Главное фото — клик открывает лайтбокс */
+.vadimus__portrait-img {
+    cursor: zoom-in;
+}
+
+/* ===== БРИФИНГ ===== */
+
+.vadimus__brief {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 44px 44px 40px;
+    min-width: 0;
+}
+
+/* ===== ИМЯ + СТАТУС ===== */
+
+.vadimus__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+}
+
+.vadimus__head::after {
+    content: "";
+    position: absolute;
+    inset: -10px -14px;
+    pointer-events: auto;
+    border-radius: 12px;
+}
+
+.vadimus__name {
+    position: relative;
+    font-size: 62px;
+    letter-spacing: -0.04em;
+    margin: 0;
+    color: var(--text);
+    display: inline-block;
+
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform-origin: right center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+
+    transition:
+        transform 1s cubic-bezier(0.65, 0, 0.35, 1),
+        color 0.5s ease;
+}
+
+.vadimus__top:hover .vadimus__name {
+    color: var(--green);
+}
+
+.vadimus__head:hover .vadimus__name {
+    transform: translate3d(0, 0, 0) scale3d(1.05, 1.05, 1);
+    color: var(--red);
+}
+
+.vadimus__status {
+    display: inline-block;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    white-space: nowrap;
+
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, background, color, box-shadow;
+    text-rendering: geometricPrecision;
+
+    transition:
+        transform 1s cubic-bezier(0.65, 0, 0.35, 1),
+        background 0.5s ease,
+        color 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.vadimus__status--sovereign {
+    color: var(--green);
+    background: rgba(74, 222, 128, 0.08);
+    box-shadow: 0 0 24px -6px rgba(74, 222, 128, 0.6);
+}
+
+.vadimus__top:hover .vadimus__status {
+    background: rgba(74, 222, 128, 0.2);
+}
+
+.vadimus__head:hover .vadimus__status {
+    transform: translate3d(0, 0, 0) scale3d(1.06, 1.06, 1);
+    background: rgba(74, 222, 128, 0.22);
+    box-shadow: 0 0 30px -4px rgba(74, 222, 128, 0.9);
+}
+
+.vadimus__tagline {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--text-2);
+    margin: 0;
+    transition: color 0.5s ease;
+}
+
+.vadimus__top:hover .vadimus__tagline {
+    color: var(--text);
+}
+
+.vadimus__titles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vadimus__titles li {
+    font-size: 12.5px;
+    line-height: 1.4;
+    padding: 6px 14px;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    border-radius: 20px;
+    color: var(--text-2);
+    cursor: default;
+    display: inline-block;
+    transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+.vadimus__titles li:hover {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+}
+
+/* Факты */
+
+.vadimus__facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 36px;
+    padding: 20px 0 0;
+    border-top: 1px solid var(--line);
+}
+
+.vadimus__fact {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 22px;
+    align-items: baseline;
+    font-size: 14px;
+    color: var(--text-2);
+    position: relative;
+    padding: 4px 0;
+}
+
+.vadimus__fact::after {
+    content: "";
+    position: absolute;
+    inset: -4px -10px;
+    pointer-events: auto;
+}
+
+/* ЛЕЙБЛ — пре-растеризация: 10.5px × 0.94 = 9.87px → 10.5px при hover */
+.vadimus__fact > span:first-child {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-family: "Space Grotesk", sans-serif;
+    white-space: nowrap;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(0.94, 0.94, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition:
+        color 0.35s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vadimus__fact:hover > span:first-child {
+    color: var(--red);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+/* ЗНАЧЕНИЕ — пре-растеризация: 14px × 0.94 = 13.16px → 14px при hover */
+.vadimus__fact > span:last-child {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.45;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(0.94, 0.94, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition:
+        color 0.35s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vadimus__fact:hover > span:last-child {
+    color: var(--green);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+/* ===== АДАПТИВ ===== */
+
+@media (max-width: 1200px) {
+    .vadimus__top {
+        grid-template-columns: 1fr;
+    }
+    .vadimus__portrait {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+    .vadimus__brief {
+        padding: 36px 32px;
+    }
+    .vadimus__name {
+        font-size: 44px;
+    }
+    .vadimus__facts {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .vadimus__portrait-img:hover,
+    .vadimus__head:hover .vadimus__name,
+    .vadimus__head:hover .vadimus__status {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+}
+
+@media (max-width: 700px) {
+    .vadimus__brief {
+        padding: 28px 22px;
+    }
+    .vadimus__name {
+        font-size: 34px;
+    }
+    .vadimus__facts {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+/* ============================================================ */
+/* БЛОК 34 — ПОДПИСЬ АВТОРА ЦИТАТЫ                              */
+/* ============================================================ */
+
+.quote__author {
+    display: block;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+    color: var(--muted);
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), letter-spacing 0.35s ease;
+}
+
+.quote__author::before {
+    content: "— ";
+    color: var(--green);
+    margin-right: 2px;
+    transition: color 0.35s ease;
+}
+
+.quote:hover .quote__author {
+    color: var(--text);
+    transform: translate3d(6px, 0, 0);
+    letter-spacing: 0.2em;
+}
+
+.quote:hover .quote__author::before {
+    color: var(--red);
+}
+/* ============================================================ */
+/* БЛОК 36 — РЕГАЛИИ И ПАНЕЛИ ВАДИМУСА                          */
+/* ============================================================ */
+
+/* --- РЕГАЛИИ --- */
+
+.vadimus__regalia {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.vadimus__regalia-item {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 18px;
+    align-items: center;
+    padding: 22px 24px;
+    background: linear-gradient(135deg, #ffffff 0%, #faf7ff 100%);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--yellow);
+    border-radius: 12px;
+    cursor: default;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, box-shadow, border-color;
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s ease,
+        border-left-color 0.35s ease;
+}
+
+.vadimus__regalia-item:nth-child(2) { border-left-color: var(--purple); }
+.vadimus__regalia-item:nth-child(3) { border-left-color: var(--red); }
+
+.vadimus__regalia-item:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 20px 40px -22px rgba(80, 40, 140, 0.4);
+}
+
+.vadimus__regalia-icon {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: #000;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease;
+}
+
+.vadimus__regalia-item:nth-child(2) .vadimus__regalia-icon { background: var(--purple); color: #fff; }
+.vadimus__regalia-item:nth-child(3) .vadimus__regalia-icon { background: var(--red); color: #fff; }
+
+.vadimus__regalia-item:hover .vadimus__regalia-icon {
+    transform: translate3d(0, 0, 0) scale3d(1.12, 1.12, 1) rotate(-6deg);
+}
+
+.vadimus__regalia-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.vadimus__regalia-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    transition: color 0.3s ease;
+}
+
+.vadimus__regalia-item:hover .vadimus__regalia-name {
+    color: var(--green);
+}
+
+.vadimus__regalia-note {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* --- ПАНЕЛИ --- */
+
+.vadimus__panels {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.vadimus__panel {
+    position: relative;
+    padding: 22px 22px 22px 26px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--green);
+    border-radius: 12px;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, box-shadow, background;
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.3s ease,
+        border-left-color 0.3s ease,
+        box-shadow 0.35s ease;
+}
+
+.vadimus__panel--residence { border-left-color: var(--green); }
+.vadimus__panel--subjects { border-left-color: var(--orange); }
+.vadimus__panel--powers    { border-left-color: var(--red); }
+.vadimus__panel--doctrine  { border-left-color: var(--purple); }
+
+.vadimus__panel::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    pointer-events: auto;
+    border-radius: 16px;
+}
+
+.vadimus__panel:hover {
+    transform: translate3d(0, -4px, 0);
+    background: #ffffff;
+    box-shadow: 0 20px 40px -25px rgba(80, 40, 140, 0.4);
+}
+
+.vadimus__panel-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line);
+    transition: color 0.3s ease;
+}
+
+.vadimus__panel:hover .vadimus__panel-head {
+    color: var(--green);
+}
+
+.vadimus__panel-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-size: 12px;
+    line-height: 1;
+    flex-shrink: 0;
+    color: #fff;
+    background: var(--green);
+    transform: translate3d(0, 0, 0) rotate(0deg) scale3d(1, 1, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vadimus__panel--subjects .vadimus__panel-icon     { background: var(--orange); }
+.vadimus__panel--powers .vadimus__panel-icon   { background: var(--red); }
+.vadimus__panel--doctrine .vadimus__panel-icon { background: var(--purple); }
+
+.vadimus__panel:hover .vadimus__panel-icon {
+    transform: translate3d(0, 0, 0) rotate(-12deg) scale3d(1.12, 1.12, 1);
+}
+
+.vadimus__panel-body {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-2);
+    transition: color 0.3s ease;
+}
+
+.vadimus__panel:hover .vadimus__panel-body {
+    color: var(--text);
+}
+
+.vadimus__panel-body p {
+    margin: 0 0 10px;
+}
+
+.vadimus__panel-body p:last-child {
+    margin-bottom: 0;
+}
+
+.vadimus__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0;
+    list-style: none;
+    padding: 0;
+}
+
+.vadimus__tags li {
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 4px 11px;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    border-radius: 16px;
+    color: var(--text-2);
+    cursor: default;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.vadimus__tags li:hover {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+}
+
+.vadimus__panel--doctrine .vadimus__tags li {
+    background: rgba(179, 136, 255, 0.08);
+    border-color: rgba(179, 136, 255, 0.25);
+}
+
+.vadimus__panel--doctrine .vadimus__tags li:hover {
+    background: var(--purple);
+    border-color: var(--purple);
+}
+
+.vadimus__note {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    display: block;
+    margin-top: 6px;
+}
+
+/* --- АДАПТИВ --- */
+
+@media (max-width: 900px) {
+    .vadimus__regalia {
+        grid-template-columns: 1fr;
+    }
+    .vadimus__panels {
+        grid-template-columns: 1fr;
+    }
+}
+/* ============================================================ */
+/* БЛОК 37 — ОБРАЩЕНИЕ И ЦИТАТА ВАДИМУСА                        */
+/* ============================================================ */
+
+/* --- ОБРАЩЕНИЕ --- */
+
+.profile__video {
+    margin-top: 44px;
+    padding: 32px 36px 60px;
+    border: 3px solid var(--green);
+    background: linear-gradient(160deg, #faf7ff 0%, #efe8fa 100%);
+    border-radius: 18px;
+    box-shadow: 0 22px 66px -22px rgba(74, 222, 128, 0.35);
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.profile__video:hover {
+    transform: translate3d(0, -2px, 0);
+    border-color: var(--red);
+    box-shadow: 0 22px 66px -22px rgba(229, 57, 53, 0.4);
+}
+
+.profile__video::after {
+    content: "ОДОБРЕНО ВАДИМУСОМ";
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    background: var(--green);
+    color: #000;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    padding: 6px 16px;
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.6);
+    white-space: nowrap;
+}
+
+.profile__video-label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 22px;
+    text-align: center;
+    transition: color 0.35s ease, letter-spacing 0.35s ease;
+}
+
+.profile__video:hover .profile__video-label {
+    color: var(--red);
+    letter-spacing: 0.12em;
+}
+
+.profile__video-el {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    background: #000;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 22px 44px -22px rgba(80, 40, 140, 0.5);
+    transition: box-shadow 0.35s ease;
+}
+
+.profile__video:hover .profile__video-el {
+    box-shadow: 0 22px 44px -22px rgba(229, 57, 53, 0.6);
+}
+
+/* --- ЦИТАТА --- */
+
+.quote {
+    margin-top: 44px;
+    padding: 60px 77px;
+    border-left: 8px solid var(--green);
+    background: var(--card);
+    border-top: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-radius: 13px;
+    box-shadow: 0 20px 40px -30px rgba(80, 40, 140, 0.25);
+    cursor: pointer;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    transition: border-left-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.quote:hover {
+    border-left-color: var(--red);
+    box-shadow: 0 20px 40px -30px rgba(80, 40, 140, 0.25), 0 0 50px -20px rgba(229, 57, 53, 0.35);
+    transform: translate3d(0, -2px, 0);
+}
+
+/* Знак кавычки — 85 × 0.906 = 77 */
+.quote__mark {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 85px;
+    line-height: 0.5;
+    color: var(--green);
+    margin-bottom: 15px;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(0.906, 0.906, 1);
+    transform-origin: left top;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.quote:hover .quote__mark {
+    color: var(--red);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+/* Текст цитаты — 35 × 0.971 = 34 */
+.quote p {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: var(--text);
+    display: block;
+    transform: translate3d(0, 0, 0) scale3d(0.971, 0.971, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition: color 0.35s ease, letter-spacing 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.quote:hover p {
+    color: var(--text);
+    letter-spacing: -0.018em;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+.quote p.small {
+    font-family: "Google Sans", "Space Grotesk", system-ui, sans-serif;
+    font-size: 14.3px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: var(--muted);
+    margin-top: 16px;
+    display: block;
+    transform: none;
+    will-change: auto;
+}
+
+.quote:hover p.small {
+    color: var(--muted);
+    letter-spacing: normal;
+    transform: none;
+}
+
+/* --- ЗАКРЫВАЮЩАЯ КАВЫЧКА --- */
+
+.quote > p:last-of-type::after {
+    content: "”";
+    display: inline;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.6em;
+    line-height: 1;
+    color: var(--green);
+    margin-left: 6px;
+    vertical-align: -0.15em;
+    opacity: 0.75;
+    pointer-events: none;
+    transition: color 0.35s ease, opacity 0.35s ease;
+}
+
+.quote:hover > p:last-of-type::after {
+    color: var(--red);
+    opacity: 1;
+}
+
+/* --- АДАПТИВ --- */
+
+@media (max-width: 900px) {
+    .quote {
+        padding: 30px 25px;
+    }
+    .quote p {
+        font-size: 22px;
+        transform: translate3d(0, 0, 0) scale3d(0.955, 0.955, 1);
+    }
+    .quote:hover p {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+    .quote__mark {
+        font-size: 62px;
+        transform: translate3d(0, 0, 0) scale3d(0.903, 0.903, 1);
+    }
+    .quote:hover .quote__mark {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+}
+    
+.quote > p:last-of-type::after {
+    content: "”";
+    display: inline;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.6em;
+    line-height: 1;
+    color: var(--green);
+    margin-left: 6px;
+    vertical-align: -0.15em;
+    opacity: 0.75;
+    pointer-events: none;
+    transition: color 0.35s ease, opacity 0.35s ease;
+}
+
+.quote:hover > p:last-of-type::after {
+    color: var(--red);
+    opacity: 1;
+}

@@ -1,0 +1,544 @@
+/* ============================================================ */
+/* БЛОК 6 — ГЛАВНЫЙ ЭКРАН                                       */
+/* ============================================================ */
+
+.hero {
+    padding: 80px 30px 90px;
+    background: transparent;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+}
+
+.hero__container { max-width: 1300px; margin: 0 auto; }
+
+/* Кикер — пре-растеризация 14px × 0.857 = 12px */
+.hero__kicker {
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 24px;
+    position: relative;
+    display: inline-block;
+    padding: 0 30px;
+    cursor: pointer;
+    transform: scale3d(0.857, 0.857, 1);
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hero__kicker:hover { color: var(--green); transform: scale3d(1, 1, 1); }
+
+.hero__kicker::before, .hero__kicker::after {
+    content: ""; position: absolute; top: 50%;
+    width: 8px; height: 8px;
+    background: var(--green); border-radius: 50%;
+    transform: translate3d(0, -50%, 0);
+}
+
+.hero__kicker::before { left: 0; }
+.hero__kicker::after { right: 0; }
+
+/* Заголовок — 60px × 0.967 = 58px */
+.hero__title {
+    font-size: 60px;
+    max-width: 1050px;
+    margin: 0 auto 24px;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--text);
+    position: relative;
+    cursor: pointer;
+    transform: scale3d(0.967, 0.967, 1);
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: letter-spacing 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero__title:hover {
+    letter-spacing: -0.01em;
+    color: var(--green);
+    transform: scale3d(1, 1, 1);
+}
+
+.hero__title::after {
+    content: ""; position: absolute;
+    left: 50%; bottom: -12px; height: 4px; width: 0;
+    background: linear-gradient(90deg, var(--green), var(--red));
+    border-radius: 2px;
+    transform: translate3d(-50%, 0, 0);
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero__title:hover::after { width: 60%; }
+
+/* Подзаголовок — 20px × 0.9 = 18px */
+.hero__desk {
+    font-size: 20px;
+    color: var(--text-2);
+    max-width: 800px;
+    margin: 0 auto;
+    cursor: pointer;
+    display: block;
+    transform: scale3d(0.9, 0.9, 1);
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hero__desk:hover { color: var(--text); transform: scale3d(1, 1, 1); }
+
+/* Зелёная линия */
+.hero__rule {
+    width: 220px; height: 8px;
+    background: var(--green);
+    margin: 32px auto 0;
+    border-radius: 4px;
+    box-shadow: 0 0 24px rgba(74, 222, 128, 0.5);
+    position: relative;
+    cursor: pointer;
+    transform-origin: center center;
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero__rule:hover {
+    width: 340px;
+    transform: scale3d(1, 1.25, 1);
+    background: var(--red);
+    box-shadow: 0 0 30px rgba(229, 57, 53, 0.7);
+}
+
+/* Символы */
+.symbols {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 40px; max-width: 820px; margin: 70px auto 0;
+}
+
+.symbols__item { text-align: center; }
+
+.symbols__placeholder {
+    aspect-ratio: 4/5;
+    border: 2px dashed var(--line);
+    background: var(--soft);
+    display: grid; place-items: center;
+    color: var(--muted);
+    font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    overflow: hidden; border-radius: 12px; cursor: pointer;
+}
+
+.symbols__placeholder:hover {
+    border-color: var(--green);
+    background: var(--card);
+    transform: scale3d(1.03, 1.03, 1);
+    box-shadow: 0 20px 40px -20px rgba(74, 222, 128, 0.5);
+}
+
+.symbols__placeholder img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease-out;
+}
+
+.symbols__placeholder:hover img { transform: scale3d(1.05, 1.05, 1); }
+
+.symbols__caption {
+    margin-top: 16px;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.25s ease, letter-spacing 0.25s ease;
+}
+
+.symbols__item:hover .symbols__caption { color: var(--green); letter-spacing: 0.22em; }
+
+/* Предупреждение */
+/* ПРЕДУПРЕЖДЕНИЕ — весь сдвиг только через transform, layout не двигается */
+
+.warning {
+    max-width: 1210px;
+    margin: 66px auto 0;
+    padding: 24px 28.6px;
+    border: 1.1px solid var(--line);
+    border-left: 8.8px solid var(--red);
+    background: var(--card);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 22px;
+    align-items: center;
+    text-align: left;
+    border-radius: 13px;
+    box-shadow: 0 9px 26px -13px rgba(80, 40, 140, 0.2);
+    cursor: pointer;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: background, border-color, box-shadow;
+    transition:
+        background 0.4s ease,
+        border-color 0.4s ease,
+        border-left-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+/* Hover на блок — только цвет и тень. Padding НЕ трогаем — именно он дёргал текст. */
+.warning:hover {
+    background: var(--red);
+    border-color: var(--red);
+    border-left-color: #fff;
+    box-shadow: 0 20px 50px -15px rgba(229, 57, 53, 0.5);
+}
+
+/* Знак "!" — сдвигается через translate, крутится и увеличивается */
+.warning__mark {
+    width: 37px;
+    height: 37px;
+    border: 2.2px solid var(--red);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--red);
+    font-weight: 700;
+    font-size: 20px;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale3d(1, 1, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, border-color, color;
+    transition:
+        border-color 0.4s ease,
+        color 0.4s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.warning:hover .warning__mark {
+    border-color: #fff;
+    color: #fff;
+    transform: translate3d(14px, 0, 0) rotate(180deg) scale3d(1.15, 1.15, 1);
+}
+
+/* "ВНИМАНИЕ!" — пре-растеризация 18px × 0.917 = 16.5px + сдвиг через translate */
+.warning strong {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 4.4px;
+    font-family: "Space Grotesk", sans-serif;
+    color: var(--text);
+    transform: translate3d(0, 0, 0) scale3d(0.917, 0.917, 1);
+    transform-origin: left top;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition:
+        color 0.4s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        letter-spacing 0.4s ease;
+}
+
+.warning:hover strong {
+    color: #fff;
+    transform: translate3d(14px, 0, 0) scale3d(1, 1, 1);
+    letter-spacing: 0.03em;
+}
+
+/* Основной текст — пре-растеризация 15.5px × 0.923 = 14.3px + сдвиг */
+.warning span {
+    font-size: 15.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(0.923, 0.923, 1);
+    transform-origin: left top;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition:
+        color 0.4s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.warning:hover span {
+    color: #fff;
+    transform: translate3d(14px, 0, 0) scale3d(1, 1, 1);
+}
+/* Достижения */
+
+/* ДОСТИЖЕНИЯ — без scale всей карточки, число с пре-растеризацией */
+
+.achievements {
+    max-width: 1210px;
+    margin: 66px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 2.2px solid var(--green);
+    border-bottom: 2.2px solid var(--green);
+    background: var(--card);
+    border-radius: 13px;
+    box-shadow: 0 0 40px -15px rgba(74, 222, 128, 0.25);
+    overflow: hidden;
+}
+
+.achievement {
+    padding: 40px 31px;
+    border-right: 1.1px solid var(--line);
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, background;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.achievement:last-child { border-right: 0; }
+
+/* Hover — только цвет фона и внутренняя тень. Никакого scale. */
+.achievement:hover {
+    background: var(--green);
+    box-shadow: inset 0 0 0 100px rgba(74, 222, 128, 0.001);
+    z-index: 2;
+}
+
+/* Число — пре-растеризация: 63px × 0.905 = 57px */
+.achievement__number {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 63px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--green);
+    display: inline-block;
+    transform: scale3d(0.905, 0.905, 1);
+    transform-origin: left top;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.achievement:hover .achievement__number {
+    color: #fff;
+    transform: scale3d(1, 1, 1);
+}
+
+/* Подпись — пре-растеризация: 15.5px × 0.923 = 14.3px */
+.achievement__label {
+    font-size: 15.5px;
+    color: var(--grey);
+    margin-top: 6.6px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    transform: scale3d(0.923, 0.923, 1);
+    transform-origin: left top;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: color 0.35s ease, letter-spacing 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.achievement:hover .achievement__label {
+    color: #fff;
+    letter-spacing: 0.2em;
+    transform: scale3d(1, 1, 1);
+}
+
+/* Примечание — пре-растеризация: 15.5px × 0.923 = 14.3px */
+.achievement__note {
+    font-size: 15.5px;
+    color: var(--muted);
+    margin-top: 22px;
+    line-height: 1.5;
+    display: block;
+    transform: scale3d(0.923, 0.923, 1);
+    transform-origin: left top;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.achievement:hover .achievement__note {
+    color: #fff;
+    transform: scale3d(1, 1, 1);
+}
+
+
+
+/* Обращение */
+.address { max-width: 850px; margin: 80px auto 0; text-align: center; position: relative; }
+
+/* ОСНОВНОЙ ТЕКСТ ОБРАЩЕНИЯ — рост через pre-rasterization, как у hero__desk */
+
+.address__text {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-2);
+    position: relative;
+    padding: 28px 32px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1.1px solid var(--line);
+    border-radius: 13px;
+    cursor: pointer;
+    transform: translate3d(0, 0, 0) scale3d(0.96, 0.96, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition:
+        color 0.4s ease,
+        background 0.4s ease,
+        border-color 0.4s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s ease;
+}
+
+/* Кавычки — выезжают и поворачиваются, как раньше */
+.address__text::before {
+    content: "“";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 60px;
+    line-height: 1;
+    color: var(--green);
+    opacity: 0.5;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    transition: color 0.4s ease, opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.address__text::after {
+    content: "”";
+    position: absolute;
+    bottom: -30px;
+    right: 20px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 60px;
+    line-height: 1;
+    color: var(--green);
+    opacity: 0.5;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    transition: color 0.4s ease, opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hover — плавный рост блока, сдвиг вверх, кавычки разворачиваются */
+.address__text:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: var(--green);
+    transform: translate3d(0, -4px, 0) scale3d(1, 1, 1);
+    box-shadow: 0 24px 45px -28px rgba(74, 222, 128, 0.45);
+}
+
+.address__text:hover::before {
+    color: var(--red);
+    opacity: 1;
+    transform: translate3d(-6px, -6px, 0) rotate(-8deg);
+}
+
+.address__text:hover::after {
+    color: var(--red);
+    opacity: 1;
+    transform: translate3d(6px, 6px, 0) rotate(8deg);
+}
+
+/* МЕЛКИЙ ТЕКСТ под обращением — та же логика */
+
+.address__small {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin-top: 32px;
+    font-style: italic;
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(74, 222, 128, 0.08);
+    border-radius: 20px;
+    cursor: pointer;
+    transform: translate3d(0, 0, 0) scale3d(0.94, 0.94, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition:
+        color 0.35s ease,
+        background 0.35s ease,
+        letter-spacing 0.35s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.address__small:hover {
+    color: var(--green);
+    background: rgba(74, 222, 128, 0.18);
+    letter-spacing: 0.03em;
+    transform: translate3d(0, -2px, 0) scale3d(1, 1, 1);
+}
+
+/* ============================================================ */
+/* СИМВОЛЫ — контейнер подстраивается под картинку              */
+/* ============================================================ */
+
+.symbols__placeholder {
+    aspect-ratio: auto;
+    width: auto;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    display: inline-block;
+    line-height: 0;
+}
+
+.symbols__placeholder img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.symbols__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

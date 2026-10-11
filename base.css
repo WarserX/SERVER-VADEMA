@@ -1,0 +1,151 @@
+/* ============================================================ */
+/* БЛОК 1 — ПЕРЕМЕННЫЕ И СБРОС                                  */
+/* ============================================================ */
+
+:root {
+    --header-h: 200px;
+    --black: #000000;
+    --grey: #6b5f8a;
+    --green: #4ade80;
+    --green-soft: #A3FF9A;
+    --red: #E53935;
+    --purple: #B388FF;
+    --yellow: #FFE066;
+    --pink: #FF9EC4;
+    --cyan: #7BE0E8;
+    --orange: #FFB570;
+
+    --bg-1: #f5f1fb;
+    --paper: #faf7ff;
+    --card: #ffffff;
+    --soft: #efe8fa;
+    --line: #d6c8ec;
+    --muted: #8b7fae;
+    --text: #1a0d2e;
+    --text-2: #4a3b6b;
+    interpolate-size: allow-keywords;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) - 65px);
+}
+
+/* ============================================================ */
+/* БЛОК 2 — BODY И ТИПОГРАФИКА                                  */
+/* ============================================================ */
+
+body {
+    font-family: "Google Sans", "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f6f3fc;
+    color: var(--text);
+    line-height: 1.5;
+    font-size: 17.6px;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    padding-top: var(--header-h);
+    transition: padding-top 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+h1, h2, h3, h4 {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+}
+
+img { display: block; max-width: 100%; }
+ul { list-style: none; }
+a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+
+.small {
+    font-size: 14.3px;
+    color: var(--muted);
+    margin-top: 9px;
+    line-height: 1.5;
+}
+
+/* ============================================================ */
+/* БЛОК 4 — ТЕНИ ПОД МЕДИА                                      */
+/* ============================================================ */
+
+img, video, .profile__video-portrait, .profile__video-el,
+.symbols__placeholder img, .enemy__photo img {
+    box-shadow: 0 12px 26px -14px rgba(80, 40, 140, 0.3);
+}
+
+.header__logo img, .footer__logo {
+    box-shadow: none;
+    filter: drop-shadow(0 4px 16px rgba(80, 40, 140, 0.25));
+}
+
+/* ============================================================ */
+/* БЛОК 17 — УТИЛИТЫ                                            */
+/* ============================================================ */
+
+strong { font-weight: 700; color: var(--green); }
+
+
+
+/* ============================================================ */
+/* БЛОК 21 — PREFERS-REDUCED-MOTION                             */
+/* ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================================ */
+/* БЛОК 48 — ЛОКАЛЬНЫЕ ШРИФТЫ (ОФЛАЙН)                          */
+/* ============================================================ */
+
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Tektur";
+    src: url("fonts/Tektur-VariableFont_wdth,wght.ttf") format("truetype");
+    font-weight: 400 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Wix Madefor Display";
+    src: url("fonts/WixMadeforDisplay-VariableFont_wght.ttf") format("truetype");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Google Sans";
+    src: url("fonts/GoogleSans-VariableFont_GRAD,opsz,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Google Sans";
+    src: url("fonts/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}

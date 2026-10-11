@@ -1,0 +1,308 @@
+/* ============================================================ */
+/* БЛОК 14 — ЗАПРЕТНАЯ ТЕМА (упрощена)                          */
+/* ============================================================ */
+
+.forbidden {
+    background: var(--red);
+    color: #fff;
+    padding: 110px 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.forbidden__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Заголовок — 74px × 0.919 = 68px */
+.forbidden h2 {
+    font-size: 74px;
+    letter-spacing: -0.03em;
+    margin-bottom: 30px;
+    color: #fff;
+    cursor: pointer;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    display: inline-block;
+    transform: scale3d(0.919, 0.919, 1);
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), letter-spacing 0.35s ease;
+}
+
+.forbidden h2:hover { letter-spacing: 0.08em; transform: scale3d(1, 1, 1); }
+
+.forbidden__warning {
+    border: 1px solid #fff;
+    padding: 22px 30px;
+    margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 1.7;
+    font-family: "Google Sans", "Space Grotesk", sans-serif;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: background 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative; z-index: 1;
+    background: rgba(160, 30, 30, 1);
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.forbidden__warning:hover {
+    background: rgba(120, 20, 20, 1);
+    transform: scale3d(1.008, 1.008, 1);
+}
+
+.forbidden p {
+    font-size: 16px; line-height: 1.7;
+    margin-bottom: 18px;
+    max-width: 800px; margin-left: auto; margin-right: auto;
+    position: relative; z-index: 1;
+    padding: 20px 28px;
+    background: rgba(160, 30, 30, 1);
+    border-left: 4px solid #fff;
+    border-radius: 10px;
+    font-family: "Google Sans", "Space Grotesk", sans-serif;
+    font-weight: 400;
+    transition: background 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    text-align: left;
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.forbidden p:hover {
+    background: rgba(120, 20, 20, 1);
+    transform: scale3d(1.005, 1.005, 1);
+}
+
+/* Штамп — 12px × 0.917 = 11px */
+.forbidden__stamp {
+    display: inline-block;
+    margin-top: 44px;
+    padding: 14px 26px;
+    border: 2px solid #fff;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    background: rgba(160, 30, 30, 1);
+    transform: scale3d(0.917, 0.917, 1);
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+    text-rendering: geometricPrecision;
+    transition: background 0.25s ease, color 0.25s ease, letter-spacing 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative; z-index: 1;
+}
+
+.forbidden__stamp:hover {
+    background: #fff;
+    color: var(--red);
+    letter-spacing: 0.32em;
+    transform: scale3d(1, 1, 1);
+}
+
+/* ============================================================ */
+/* БЛОК 15 — ФУТЕР                                              */
+/* ============================================================ */
+
+.footer {
+    background: #1a0d2e;
+    color: #ece6ff;
+    padding: 70px 30px 50px;
+    border-top: 1px solid var(--line);
+}
+
+.footer__container { max-width: 1200px; margin: 0 auto; }
+
+.footer__top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 32px;
+}
+
+.footer__logo {
+    height: 90px; width: auto;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+    cursor: pointer;
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.footer__logo:hover {
+    transform: scale3d(1.06, 1.06, 1);
+    filter: drop-shadow(0 0 30px rgba(74, 222, 128, 0.8));
+}
+
+.footer__nav { display: flex; gap: 32px; }
+
+.footer__nav a {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.25s ease;
+}
+
+.footer__nav a::after {
+    content: ""; position: absolute;
+    left: 0; right: 0; bottom: 0; height: 2px;
+    background: var(--green-soft);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.25s ease;
+}
+
+.footer__nav a:hover { color: var(--green-soft); }
+.footer__nav a:hover::after { transform: scaleX(1); }
+
+.footer__text p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.65;
+    margin-bottom: 12px;
+    max-width: 900px;
+}
+
+.footer__text .small { color: rgba(255, 255, 255, 0.6); font-size: 12px; }
+
+/* ============================================================ */
+/* БЛОК 18 — ИНФОРМАЦИОННАЯ ПЛАШКА                              */
+/* ============================================================ */
+
+.notice {
+    padding: 60px 30px;
+    background: rgba(250, 247, 255, 0.55);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.notice__container {
+    position: relative;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 70px 1fr;
+    gap: 28px;
+    padding: 32px 36px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 8px solid var(--green);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -25px rgba(80, 40, 140, 0.25);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-left-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.notice__container:hover {
+    transform: translate3d(6px, 0, 0);
+    border-left-color: var(--red);
+    box-shadow: 0 20px 50px -25px rgba(80, 40, 140, 0.4), 0 0 30px -15px rgba(229, 57, 53, 0.35);
+}
+
+.notice__mark {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-size: 40px; line-height: 1;
+    color: var(--green);
+    text-align: center; align-self: flex-start;
+    text-shadow: 0 0 20px rgba(74, 222, 128, 0.6);
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    display: inline-block;
+    transform-origin: center center;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.notice__container:hover .notice__mark { color: var(--red); text-shadow: 0 0 30px rgba(229, 57, 53, 0.8); transform: scale3d(1.1, 1.1, 1); }
+
+.notice__title {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-size: 24px; font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    color: var(--text);
+    transition: color 0.3s ease;
+}
+
+.notice__container:hover .notice__title { color: var(--green); }
+
+.notice__text { font-size: 15px; line-height: 1.65; color: var(--text-2); margin: 0 0 16px; }
+
+.notice__list { list-style: none; padding: 0; margin: 0 0 16px; border-top: 1px solid var(--line); }
+
+.notice__list li {
+    padding: 10px 0 10px 24px;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px; color: var(--text-2); line-height: 1.5;
+    transition: padding-left 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+
+.notice__list li:hover { padding-left: 32px; color: var(--text); background: rgba(74, 222, 128, 0.08); }
+
+.notice__list li::before {
+    content: ""; position: absolute;
+    left: 0; top: 50%;
+    transform: translate3d(0, -50%, 0);
+    width: 12px; height: 3px;
+    background: var(--green);
+    transition: width 0.25s ease, background 0.25s ease;
+}
+
+.notice__list li:hover::before { width: 20px; background: var(--red); }
+
+.notice__small { font-size: 13px; color: var(--muted); font-style: italic; margin: 0; }
+
+@media (max-width: 700px) {
+    .notice { padding: 40px 20px; }
+    .notice__container { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
+    .notice__mark { text-align: left; }
+    .notice__title { font-size: 20px; }
+}
+
+/* ============================================================ */
+/* БЛОК 20 — ГОСУДАРСТВЕННЫЕ ТЕРМИНЫ                            */
+/* ============================================================ */
+
+.poganets {
+    font-weight: 700; font-style: italic;
+    color: var(--red);
+    letter-spacing: 0.01em;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+    cursor: help;
+}
+
+.poganets:hover { color: var(--purple); text-shadow: 0 0 18px rgba(179, 136, 255, 0.6); }
+
+.law .poganets { color: var(--red); background: rgba(229, 57, 53, 0.08); padding: 0 4px; border-radius: 3px; }
+
+.forbidden .poganets {
+    color: #fff;
+    text-decoration: underline wavy rgba(255, 255, 255, 0.7);
+    text-underline-offset: 4px;
+}
+
+.forbidden .poganets:hover { color: var(--yellow); text-shadow: 0 0 18px rgba(255, 224, 102, 0.8); }
+
+.footer .poganets { color: var(--pink); }
+.footer .poganets:hover { color: var(--yellow); }

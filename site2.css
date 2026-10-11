@@ -1,0 +1,953 @@
+/* ============================================================ */
+/* SITE2 — САЙБЕРСТАН · ТЁМНАЯ НЕОНОВАЯ (облегчённая)           */
+/* ============================================================ */
+.site--2 {
+    --s2-black: #0a100e;
+    --s2-card: #222222;
+    --s2-uran: #00FF00;
+    --s2-grey: #868686;
+    --s2-grey-3: #777777;
+    --s2-red: #ff2a2a;
+
+    background: #0a100e;
+    color: #e8e8e8;
+    font-family: "Wix Madefor Display", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.site--2 ::selection { background: var(--s2-uran); color: var(--s2-black); }
+
+.site--2 ::-webkit-scrollbar,
+.site--2::-webkit-scrollbar { display: none; }
+.site--2 { scrollbar-width: none; }
+
+.site--2__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ============================================================ */
+/* HERO                                                         */
+/* ============================================================ */
+
+.site2-hero {
+    position: relative;
+    padding: 90px 20px 110px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.site2-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0, 255, 0, 0.08), transparent 70%);
+    pointer-events: none;
+}
+
+.site2-hero__title {
+    position: relative;
+    font-family: "Tektur", "Wix Madefor Display", sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 7vw, 110px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--s2-uran);
+    margin: 0 0 22px;
+    text-shadow: 0 0 22px rgba(0, 255, 0, 0.5);
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.site2-hero__sub {
+    display: inline-block;
+    max-width: 100%;
+    font-family: "Wix Madefor Display", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--s2-grey);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.25);
+    border-radius: 50px;
+    padding: 9px 20px;
+    overflow-wrap: break-word;
+}
+
+.site2-hero__desc {
+    font-family: "Wix Madefor Display", sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--s2-grey);
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-wrap: break-word;
+}
+
+/* ============================================================ */
+/* СЕКЦИИ                                                       */
+/* ============================================================ */
+
+.site2-section {
+    padding: 80px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site2-section:first-of-type { border-top: none; }
+
+.site2-section__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.site2-section__title {
+    font-family: "Tektur", "Wix Madefor Display", sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 3.2vw, 38px);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
+    line-height: 1.1;
+    transition: color 0.3s ease;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
+}
+
+.site2-section__head:hover .site2-section__title {
+    color: var(--s2-uran);
+}
+
+.site2-section__num {
+    font-family: "Wix Madefor Display", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--s2-grey-3);
+    white-space: nowrap;
+}
+
+/* ============================================================ */
+/* С.У.К.                                                       */
+/* ============================================================ */
+
+.site2-suk {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 22px;
+    align-items: stretch;
+}
+
+.site2-suk__info {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 34px 36px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-left: 3px solid var(--s2-uran);
+    border-radius: 18px;
+    transition: border-color 0.3s ease, transform 0.35s ease;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    min-width: 0;
+}
+
+.site2-suk__info:hover {
+    border-color: var(--s2-uran);
+    transform: translate3d(0, -3px, 0);
+}
+
+.site2-suk__info p {
+    font-family: "Wix Madefor Display", sans-serif;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: #d4d4d4;
+    margin: 0;
+    overflow-wrap: break-word;
+}
+
+.site2-suk__info strong {
+    color: var(--s2-uran);
+    font-weight: 700;
+}
+
+.site2-suk__date {
+    font-family: "Wix Madefor Display", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--s2-grey-3);
+    padding-top: 18px;
+    border-top: 1px solid rgba(0, 255, 0, 0.15);
+    margin-top: auto;
+    overflow-wrap: break-word;
+}
+
+.site2-suk__mark {
+    display: grid;
+    place-items: center;
+    min-height: 280px;
+    background: rgba(0, 255, 0, 0.04);
+    border: 1px solid rgba(0, 255, 0, 0.25);
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.site2-suk__mark::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px dashed rgba(0, 255, 0, 0.2);
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.site2-suk__mark-text {
+    font-family: "Tektur", sans-serif;
+    font-weight: 800;
+    font-size: clamp(56px, 8vw, 110px);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--s2-uran);
+    text-shadow: 0 0 26px rgba(0, 255, 0, 0.5);
+    overflow-wrap: break-word;
+}
+
+/* ============================================================ */
+/* РОЗЫСК                                                       */
+/* ============================================================ */
+
+.site2-wanted {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 34px;
+    align-items: center;
+    padding: 36px 38px;
+    background: rgba(255, 42, 42, 0.06);
+    border: 2px solid var(--s2-red);
+    border-radius: 22px;
+    box-shadow: 0 0 40px -20px rgba(255, 42, 42, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.site2-wanted::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 42, 42, 0.05) 0 12px,
+        transparent 12px 24px
+    );
+    pointer-events: none;
+}
+
+.site2-wanted__robot {
+    position: relative;
+    aspect-ratio: 1;
+    background: #0a0000;
+    border: 2px dashed var(--s2-red);
+    border-radius: 14px;
+    overflow: hidden;
+    display: block;
+    padding: 0;
+    z-index: 1;
+}
+
+.site2-wanted__robot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(6) brightness(0.9);
+}
+
+.site2-wanted__robot-caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    background: var(--s2-red);
+    color: #fff;
+    font-family: "HACKED", monospace;
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.site2-wanted__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.site2-wanted__title {
+    font-family: "Tektur", "Wix Madefor Display", sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 3vw, 34px);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--s2-red);
+    margin: 0;
+    text-shadow: 0 0 22px rgba(255, 42, 42, 0.5);
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.site2-wanted__text {
+    font-family: "Wix Madefor Display", sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #e0b8b8;
+    margin: 0;
+    overflow-wrap: break-word;
+}
+
+.site2-wanted__name {
+    display: inline-block;
+    max-width: 100%;
+    font-family: "HACKED", monospace;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: var(--s2-black);
+    background: var(--s2-uran);
+    padding: 7px 18px;
+    border-radius: 8px;
+    align-self: flex-start;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.3s ease;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+a.site2-wanted__name:hover {
+    background: #fff;
+    transform: translate3d(4px, -3px, 0);
+}
+
+/* ============================================================ */
+/* ФУТЕР                                                        */
+/* ============================================================ */
+
+.site2-footer {
+    margin-top: 0;
+    padding: 50px 30px 36px;
+    background: #060606;
+    text-align: center;
+    position: relative;
+}
+
+.site2-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--s2-uran);
+}
+
+.site2-footer p {
+    font-family: "Wix Madefor Display", sans-serif;
+    font-size: 13px;
+    color: var(--s2-grey-3);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    transition: color 0.3s ease;
+    overflow-wrap: break-word;
+}
+
+.site2-footer p:hover { color: var(--s2-grey); }
+
+/* ============================================================ */
+/* АДАПТИВ                                                      */
+/* ============================================================ */
+
+@media (max-width: 900px) {
+    .site--2 { font-size: 15px; }
+    .site--2__container { padding: 0 20px; }
+
+    .site2-hero { padding: 60px 10px 80px; }
+    .site2-hero__title { font-size: clamp(34px, 9vw, 70px); }
+    .site2-hero__sub { font-size: 10px; letter-spacing: 0.18em; padding: 8px 14px; }
+    .site2-hero__desc { font-size: 14px; }
+
+    .site2-section { padding: 55px 0; }
+    .site2-section__head { margin-bottom: 30px; }
+    .site2-section__title { font-size: clamp(20px, 4.5vw, 28px); }
+
+    .site2-suk { grid-template-columns: 1fr; }
+    .site2-suk__info { padding: 26px 22px; }
+    .site2-suk__info p { font-size: 14.5px; }
+    .site2-suk__mark { min-height: 200px; }
+    .site2-suk__mark-text { font-size: clamp(48px, 14vw, 90px); }
+
+    .site2-wanted {
+        grid-template-columns: 1fr;
+        padding: 26px 22px;
+        gap: 22px;
+    }
+    .site2-wanted__robot { max-width: 200px; margin: 0 auto; }
+    .site2-wanted__title { font-size: clamp(20px, 5vw, 28px); }
+    .site2-wanted__text { font-size: 14px; }
+    .site2-wanted__name { font-size: 18px; align-self: center; }
+}
+
+@media (max-width: 700px) {
+    .site2-hero__title { font-size: clamp(30px, 11vw, 56px); }
+    .site2-section__title { font-size: clamp(18px, 5vw, 24px); }
+    .site2-wanted { padding: 22px 18px; }
+    .site2-wanted__title { font-size: clamp(18px, 6vw, 26px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site--2 *,
+    .site--2 *::before,
+    .site--2 *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* ============================================================ */
+/* БОЛЬШАЯ КНОПКА-ССЫЛКА 28мем.рф                               */
+/* ============================================================ */
+
+.site2-link-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 10px;
+}
+
+.site2-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-family: "Tektur", "Wix Madefor Display", sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 3.5vw, 42px);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--s2-black);
+    background: var(--s2-uran);
+    padding: 22px 56px;
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow:
+        0 0 30px rgba(0, 255, 0, 0.6),
+        0 0 80px rgba(0, 255, 0, 0.25);
+    transform: translate3d(0, 0, 0);
+    transition: background 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, color 0.25s ease;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.site2-link-btn:hover {
+    background: #ffffff;
+    color: var(--s2-black);
+    transform: translate3d(0, -5px, 0) scale3d(1.03, 1.03, 1);
+    box-shadow:
+        0 0 50px rgba(0, 255, 0, 0.9),
+        0 0 120px rgba(0, 255, 0, 0.4);
+}
+
+.site2-link-btn:active {
+    transform: translate3d(0, -2px, 0) scale3d(0.98, 0.98, 1);
+}
+
+@media (max-width: 700px) {
+    .site2-link-btn {
+        padding: 18px 34px;
+        font-size: clamp(20px, 5vw, 28px);
+    }
+}
+
+/* ============================================================ */
+/* АНИМАЦИИ САЙБЕРСТАНА — hover, свечение, движение             */
+/* Всё через transform, color, box-shadow, filter, background.  */
+/* Никаких font-size/padding/letter-spacing в hover.            */
+/* ============================================================ */
+
+/* --- HERO --- */
+
+.site2-hero__title {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transition:
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        text-shadow 0.5s ease,
+        color 0.3s ease;
+}
+
+.site2-hero__title:hover {
+    transform: translate3d(0, 0, 0) scale3d(1.03, 1.03, 1);
+    text-shadow:
+        0 0 30px rgba(0, 255, 0, 0.9),
+        0 0 70px rgba(0, 255, 0, 0.5),
+        0 0 140px rgba(0, 255, 0, 0.25);
+    color: #CCFFCC;
+}
+
+.site2-hero__sub {
+    transition:
+        color 0.4s ease,
+        border-color 0.4s ease,
+        background 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-hero__sub:hover {
+    color: #00FF00;
+    border-color: rgba(0, 255, 0, 0.8);
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow:
+        0 0 20px rgba(0, 255, 0, 0.4),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+    transform: translate3d(0, -3px, 0);
+}
+
+.site2-hero__desc {
+    transition: color 0.4s ease, text-shadow 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-hero__desc:hover {
+    color: #fff;
+    text-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
+    transform: translate3d(4px, 0, 0);
+}
+
+/* Свечение фона hero — усиливается */
+.site2-hero::before {
+    transition: opacity 1.2s ease;
+}
+
+.site2-hero:hover::before {
+    opacity: 1;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(0, 255, 0, 0.16), transparent 70%);
+}
+
+/* --- ЗАГОЛОВКИ СЕКЦИЙ --- */
+
+.site2-section__title {
+    transform: translate3d(0, 0, 0);
+    transition:
+        color 0.35s ease,
+        text-shadow 0.4s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-section__head:hover .site2-section__title {
+    color: #00FF00;
+    text-shadow: 0 0 18px rgba(0, 255, 0, 0.7), 0 0 40px rgba(0, 255, 0, 0.3);
+    transform: translate3d(8px, 0, 0);
+}
+
+.site2-section__num {
+    transition: color 0.35s ease, text-shadow 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-section__num:hover {
+    color: #00FF00;
+    text-shadow: 0 0 12px rgba(0, 255, 0, 0.6);
+    transform: translate3d(4px, 0, 0);
+}
+
+/* Тонкая полоса под заголовком раздела — растёт */
+.site2-section__head {
+    position: relative;
+}
+
+.site2-section__head::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(90deg, #00FF00, transparent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+}
+
+.site2-section__head:hover::after {
+    transform: scaleX(1);
+}
+
+/* --- С.У.К. КАРТОЧКА --- */
+
+.site2-suk__info {
+    transition:
+        border-color 0.4s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s ease,
+        background 0.4s ease;
+}
+
+.site2-suk__info:hover {
+    border-color: #00FF00;
+    transform: translate3d(0, -4px, 0);
+    box-shadow:
+        0 20px 40px -20px rgba(0, 255, 0, 0.5),
+        inset 0 0 40px rgba(0, 255, 0, 0.06);
+    background: rgba(0, 255, 0, 0.03);
+}
+
+.site2-suk__info p {
+    transition: color 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-suk__info p:hover {
+    color: #fff;
+    transform: translate3d(6px, 0, 0);
+}
+
+.site2-suk__date {
+    transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+.site2-suk__info:hover .site2-suk__date {
+    color: #00FF00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* Знак С.У.К. — пульсирует и светится */
+.site2-suk__mark-text {
+    transition:
+        text-shadow 0.6s ease,
+        color 0.4s ease,
+        transform 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.site2-suk__mark:hover .site2-suk__mark-text {
+    color: #CCFFCC;
+    text-shadow:
+        0 0 40px rgba(0, 255, 0, 1),
+        0 0 80px rgba(0, 255, 0, 0.6),
+        0 0 160px rgba(0, 255, 0, 0.3);
+    transform: scale3d(1.06, 1.06, 1);
+}
+
+.site2-suk__mark::before {
+    transition: opacity 0.5s ease, inset 0.5s ease;
+}
+
+.site2-suk__mark:hover::before {
+    opacity: 0.7;
+    inset: 12px;
+}
+
+/* --- РОЗЫСК --- */
+
+.site2-wanted {
+    transition:
+        box-shadow 0.5s ease,
+        border-color 0.4s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(0, 0, 0);
+}
+
+.site2-wanted:hover {
+    border-color: #FF5555;
+    transform: translate3d(0, -3px, 0);
+    box-shadow:
+        0 0 60px -15px rgba(255, 42, 42, 0.7),
+        inset 0 0 40px rgba(255, 42, 42, 0.05);
+}
+
+.site2-wanted__robot {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
+}
+
+.site2-wanted:hover .site2-wanted__robot {
+    transform: scale3d(1.03, 1.03, 1);
+    border-color: #FF5555;
+}
+
+.site2-wanted__robot img {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+}
+
+.site2-wanted:hover .site2-wanted__robot img {
+    transform: scale3d(1.05, 1.05, 1);
+    filter: contrast(6) brightness(1.1);
+}
+
+.site2-wanted__title {
+    transition:
+        color 0.4s ease,
+        text-shadow 0.4s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-wanted__title:hover {
+    color: #FF5555;
+    text-shadow:
+        0 0 24px rgba(255, 42, 42, 0.9),
+        0 0 60px rgba(255, 42, 42, 0.4);
+    transform: translate3d(6px, 0, 0);
+}
+
+.site2-wanted__text {
+    transition: color 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-wanted__text:hover {
+    color: #fff;
+    transform: translate3d(6px, 0, 0);
+}
+
+.site2-wanted__name {
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1),
+        box-shadow 0.4s ease;
+}
+
+a.site2-wanted__name:hover {
+    background: #fff;
+    color: #090909;
+    transform: translate3d(6px, -4px, 0) scale3d(1.03, 1.03, 1);
+    box-shadow:
+        0 0 30px rgba(0, 255, 0, 0.6),
+        0 0 60px rgba(0, 255, 0, 0.3);
+}
+
+/* Красный штамп-мазок в wanted — если есть background repeat */
+.site2-wanted::before {
+    transition: opacity 0.6s ease;
+    opacity: 0.5;
+}
+
+.site2-wanted:hover::before {
+    opacity: 0.9;
+}
+
+/* --- КНОПКА-ССЫЛКА 28мем.рф --- */
+
+.site2-link-btn {
+    transition:
+        background 0.3s ease,
+        transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1),
+        box-shadow 0.4s ease,
+        color 0.3s ease;
+}
+
+.site2-link-btn:hover {
+    background: #ffffff;
+    color: #090909;
+    transform: translate3d(0, -6px, 0) scale3d(1.04, 1.04, 1);
+    box-shadow:
+        0 0 60px rgba(0, 255, 0, 1),
+        0 0 140px rgba(0, 255, 0, 0.5),
+        inset 0 0 30px rgba(0, 255, 0, 0.15);
+}
+
+.site2-link-btn:active {
+    transform: translate3d(0, -2px, 0) scale3d(0.98, 0.98, 1);
+}
+
+/* --- ФУТЕР --- */
+
+.site2-footer p {
+    transition: color 0.4s ease, text-shadow 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-footer p:hover {
+    color: #00FF00;
+    text-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
+    transform: translate3d(0, -2px, 0);
+}
+
+/* Точка над футером — пульсирует при hover */
+.site2-footer::before {
+    transition: box-shadow 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-footer:hover::before {
+    box-shadow:
+        0 0 20px rgba(0, 255, 0, 1),
+        0 0 40px rgba(0, 255, 0, 0.5);
+    transform: translate3d(-50%, -50%, 0) scale3d(1.5, 1.5, 1);
+}
+
+/* --- ГЛОБАЛЬНОЕ МЯГКОЕ ПОЯВЛЕНИЕ СЕКЦИЙ --- */
+
+@keyframes site2-section-in {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.site2-section {
+    animation: site2-section-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.site2-section:nth-of-type(1) { animation-delay: 0.05s; }
+.site2-section:nth-of-type(2) { animation-delay: 0.10s; }
+.site2-section:nth-of-type(3) { animation-delay: 0.15s; }
+.site2-section:nth-of-type(4) { animation-delay: 0.20s; }
+.site2-section:nth-of-type(5) { animation-delay: 0.25s; }
+
+/* --- ПРЕДПОЧТЕНИЯ --- */
+
+@media (prefers-reduced-motion: reduce) {
+    .site2-hero__title,
+    .site2-hero__sub,
+    .site2-hero__desc,
+    .site2-section__title,
+    .site2-section__num,
+    .site2-section__head::after,
+    .site2-suk__info,
+    .site2-suk__info p,
+    .site2-suk__mark-text,
+    .site2-suk__mark::before,
+    .site2-wanted,
+    .site2-wanted__robot,
+    .site2-wanted__robot img,
+    .site2-wanted__title,
+    .site2-wanted__text,
+    .site2-wanted__name,
+    .site2-wanted::before,
+    .site2-link-btn,
+    .site2-footer p,
+    .site2-footer::before,
+    .site2-section {
+        transition-duration: 0.01ms !important;
+        animation: none !important;
+        transform: none !important;
+    }
+}
+
+/* ============================================================ */
+/* ФЛАГ САЙБЕРСТАНА — тёмный неоновый блок                     */
+/* ============================================================ */
+
+.site2-flag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 70px auto 0;
+    padding: 26px 26px 20px;
+    background: rgba(0, 255, 0, 0.03);
+    border: 1px solid rgba(0, 255, 0, 0.25);
+    position: relative;
+    max-width: 480px;
+    transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.site2-flag::before,
+.site2-flag::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-color: #00FF00;
+    border-style: solid;
+    pointer-events: none;
+    transition: width 0.4s ease, height 0.4s ease;
+}
+.site2-flag::before { top: -1px;    left: -1px;  border-width: 2px 0 0 2px; }
+.site2-flag::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+.site2-flag:hover {
+    border-color: #00FF00;
+    background: rgba(0, 255, 0, 0.06);
+    box-shadow:
+        0 0 30px rgba(0, 255, 0, 0.35),
+        inset 0 0 30px rgba(0, 255, 0, 0.06);
+}
+.site2-flag:hover::before,
+.site2-flag:hover::after { width: 28px; height: 28px; }
+
+.site2-flag__label {
+    font-family: "Wix Madefor Display", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(0, 255, 0, 0.7);
+    text-align: center;
+    transition: color 0.4s ease, letter-spacing 0.4s ease;
+}
+
+.site2-flag:hover .site2-flag__label {
+    color: #00FF00;
+    letter-spacing: 0.4em;
+}
+
+.site2-flag__slot {
+    display: inline-block;
+    line-height: 0;
+    padding: 0;
+}
+
+.site2-flag__slot img {
+    max-width: 100%;
+    max-height: 420px;
+    width: auto;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.35));
+    transition: filter 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site2-flag:hover .site2-flag__slot img {
+    filter: drop-shadow(0 0 32px rgba(0, 255, 0, 0.7));
+    transform: scale3d(1.03, 1.03, 1);
+}
+
+@media (max-width: 700px) {
+    .site2-flag {
+        padding: 18px 18px 14px;
+        margin-top: 40px;
+    }
+    .site2-flag__slot img {
+        max-height: 180px;
+    }
+    .site2-flag__label {
+        font-size: 9.5px;
+        letter-spacing: 0.22em;
+    }
+}
+
+.site2-flag {
+    max-width: 720px;
+    padding: 34px 34px 26px;
+}

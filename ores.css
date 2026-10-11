@@ -1,0 +1,382 @@
+/* ============================================================ */
+/* БЛОК 22 — РЕЕСТР ПОЛЕЗНЫХ ИСКОПАЕМЫХ                         */
+/* ============================================================ */
+
+.ores {
+    position: relative;
+    margin-top: 22px;
+    border: 1.1px solid var(--line);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.85);
+    overflow: hidden;
+    interpolate-size: allow-keywords;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ores::details-content {
+    block-size: 0;
+    overflow: hidden;
+    content-visibility: hidden;
+    transition:
+        block-size 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        content-visibility 0.5s allow-discrete;
+}
+
+.ores[open]::details-content {
+    block-size: auto;
+    content-visibility: visible;
+}
+
+.ores[open] {
+    border-color: var(--green);
+    box-shadow: 0 20px 50px -25px rgba(74, 222, 128, 0.35);
+}
+
+.ores__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 28px;
+    cursor: pointer;
+    list-style: none;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    transition: background 0.3s ease, color 0.3s ease, letter-spacing 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+}
+
+.ores__toggle::-webkit-details-marker { display: none; }
+.ores__toggle::marker { content: ""; }
+
+.ores__toggle:hover {
+    background: rgba(74, 222, 128, 0.08);
+    color: var(--green);
+    letter-spacing: 0.1em;
+    transform: translate3d(4px, 0, 0);
+}
+
+.ores[open] .ores__toggle {
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--green);
+    border-bottom: 1.1px solid var(--line);
+}
+
+.ores__toggle-text {
+    flex: 1 1 auto;
+}
+
+.ores__toggle-arrow {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--green);
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ores[open] .ores__toggle-arrow {
+    transform: translate3d(0, 0, 0) rotate(180deg);
+}
+
+.ores__panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 26px 28px 30px 60px;
+}
+
+/* --- КАРТОЧКА СТРАНЫ: hover — только цвет/тень/small translate, БЕЗ scale --- */
+
+.ores__country {
+    position: relative;
+    padding: 22px 24px;
+    background: var(--card);
+    border: 1.1px solid var(--line);
+    border-radius: 12px;
+    border-top: 3px solid var(--green);
+    transform: translate3d(0, 0, 0);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, border-color, box-shadow;
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.3s ease,
+        border-top-color 0.3s ease,
+        box-shadow 0.35s ease,
+        background 0.3s ease;
+}
+
+.ores__country--vadimus { border-top-color: var(--green); }
+.ores__country--yaroslav { border-top-color: var(--purple); }
+.ores__country--cyber { border-top-color: var(--red); }
+.ores__country--danyulyak { border-top-color: var(--orange); }
+.ores__country--ledik { border-top-color: var(--muted); }
+.ores__country--lavrentiy { border-top-color: #9B6DD6; }
+
+.ores__country:hover {
+    border-color: var(--green);
+    border-top-color: var(--green);
+    background: rgba(74, 222, 128, 0.04);
+    box-shadow: 0 25px 45px -25px rgba(80, 40, 140, 0.45);
+    transform: translate3d(0, -4px, 0);
+    z-index: 2;
+}
+
+.ores__country-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1.1px solid var(--line);
+}
+
+/* --- НАЗВАНИЕ: пре-растеризация 0.96 → 1 --- */
+
+.ores__country-name {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin: 0;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(0.96, 0.96, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ores__country:hover .ores__country-name {
+    color: var(--green);
+    transform: translate3d(4px, 0, 0) scale3d(1, 1, 1);
+}
+
+/* --- ПОДПИСЬ: пре-растеризация 0.96 → 1 --- */
+
+.ores__country-sub {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: "Space Grotesk", sans-serif;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(0.96, 0.96, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ores__country:hover .ores__country-sub {
+    color: var(--text-2);
+    transform: translate3d(4px, 0, 0) scale3d(1, 1, 1);
+}
+
+/* --- СПИСОК РУД --- */
+
+.ores__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* --- РУДА: только цвет/тень при hover, никаких translate --- */
+
+.ores__list li {
+    position: relative;
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: var(--text-2);
+    padding: 5px 11px;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    border-radius: 20px;
+    cursor: default;
+    display: inline-block;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.ores__list li::after {
+    content: none;
+}
+
+.ores__list li:hover {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+    box-shadow: 0 8px 18px -8px rgba(74, 222, 128, 0.7);
+}
+
+.ores__country--yaroslav .ores__list li {
+    background: rgba(179, 136, 255, 0.08);
+    border-color: rgba(179, 136, 255, 0.25);
+}
+
+.ores__country--yaroslav .ores__list li:hover {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: #fff;
+    box-shadow: 0 10px 22px -10px rgba(179, 136, 255, 0.75);
+}
+
+.ores__country--cyber .ores__list li {
+    background: rgba(229, 57, 53, 0.08);
+    border-color: rgba(229, 57, 53, 0.25);
+}
+
+.ores__country--cyber .ores__list li:hover {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+    box-shadow: 0 10px 22px -10px rgba(229, 57, 53, 0.75);
+}
+
+.ores__country--danyulyak .ores__list li {
+    background: rgba(255, 181, 112, 0.1);
+    border-color: rgba(255, 181, 112, 0.3);
+}
+
+.ores__country--danyulyak .ores__list li:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
+    box-shadow: 0 10px 22px -10px rgba(255, 181, 112, 0.75);
+}
+
+.ores__country--yaroslav .ores__list li:hover {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: #fff;
+    box-shadow: 0 8px 18px -8px rgba(179, 136, 255, 0.75);
+}
+
+.ores__country--cyber .ores__list li:hover {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+    box-shadow: 0 8px 18px -8px rgba(229, 57, 53, 0.75);
+}
+
+.ores__country--danyulyak .ores__list li:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
+    box-shadow: 0 8px 18px -8px rgba(255, 181, 112, 0.75);
+}
+.ores__empty {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0;
+    line-height: 1.5;
+    display: inline-block;
+    transform: translate3d(0, 0, 0) scale3d(0.96, 0.96, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform, color;
+    text-rendering: geometricPrecision;
+    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ores__country:hover .ores__empty {
+    transform: translate3d(4px, 0, 0) scale3d(1, 1, 1);
+}
+
+@media (max-width: 900px) {
+    .ores__panel {
+        grid-template-columns: 1fr;
+        padding: 20px 20px 20px 50px;
+        gap: 14px;
+    }
+
+    .ores__toggle {
+        padding: 18px 20px;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+    }
+
+    .ores__country {
+        padding: 18px 20px;
+    }
+
+    .ores__country-name { font-size: 18px; }
+
+    .ores__list li { font-size: 12px; padding: 4px 10px; }
+}
+/* ============================================================ */
+/* КНОПКА ЗАКРЫТИЯ РЕЕСТРА — ВЕРТИКАЛЬНАЯ ПОЛОСА СЛЕВА          */
+/* ============================================================ */
+
+.ores__close {
+    display: none;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+    width: 34px;
+    padding: 0;
+    border: none;
+    border-right: 1.1px solid var(--line);
+    background: rgba(74, 222, 128, 0.06);
+    color: var(--green);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 5;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.ores[open] .ores__close {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 16px;
+}
+
+.ores__close:hover {
+    background: var(--red);
+    color: #fff;
+    border-right-color: var(--red);
+}
