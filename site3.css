@@ -17404,3 +17404,248 @@ section.site3-hero h1.site3-hero__title em {
         max-height: 420px !important;
     }
 }
+
+/* ============================================================ */
+/* PATCH v102 — КОММЕНТАРИИ GISCUS В СТИЛЕ ЯДЕРСТАНА            */
+/* Ставить в самый конец site3.css.                             */
+/* ============================================================ */
+
+/* ------------------------------------------------------------ */
+/* 1. Секция                                                    */
+/* ------------------------------------------------------------ */
+
+.site3-comments {
+    position: relative;
+    padding: 100px 60px 120px;
+    background: var(--s3-black);
+    border-top: 1px solid var(--s3-line-2);
+    overflow: hidden;
+}
+
+.site3-comments::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 50% at 15% 20%, rgba(212, 255, 0, 0.06), transparent 70%),
+        radial-gradient(ellipse 60% 50% at 85% 80%, rgba(255, 140, 0, 0.05), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.site3-comments__container {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+/* ------------------------------------------------------------ */
+/* 2. Заголовок — как у секций site3                            */
+/* ------------------------------------------------------------ */
+
+.site3-comments__head {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 60px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.site3-comments__head::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 30px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--s3-rad) 0%, var(--s3-orange) 50%, transparent 100%);
+    box-shadow: 0 0 14px rgba(212, 255, 0, 0.35);
+    transition: box-shadow 1.2s cubic-bezier(0.4, 0, 0.2, 1), filter 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site3-comments__head:hover::before {
+    box-shadow: 0 0 22px rgba(212, 255, 0, 0.55), 0 0 44px rgba(212, 255, 0, 0.25);
+    filter: brightness(1.15);
+}
+
+.site3-comments__num {
+    font-family: "Tektur", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--s3-rad);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: color 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site3-comments__num::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--s3-rad);
+    box-shadow: 0 0 6px rgba(212, 255, 0, 0.65);
+    border-radius: 50%;
+    animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+.site3-comments__head:hover .site3-comments__num {
+    color: #ffffff;
+    transform: translate3d(5px, 0, 0);
+}
+
+.site3-comments__title {
+    font-family: "Tektur", sans-serif;
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+    line-height: 0.95;
+    max-width: 900px;
+    display: inline-block;
+    position: relative;
+    text-shadow:
+        0 0 8px rgba(212, 255, 0, 0.12),
+        0 0 22px rgba(212, 255, 0, 0.06);
+    transition: text-shadow 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site3-comments__head:hover .site3-comments__title {
+    text-shadow:
+        0 0 14px rgba(212, 255, 0, 0.32),
+        0 0 36px rgba(212, 255, 0, 0.16);
+}
+
+.site3-comments__title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -14px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--s3-rad), var(--s3-orange));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 14px rgba(212, 255, 0, 0.5);
+    pointer-events: none;
+}
+
+.site3-comments__head:hover .site3-comments__title::after {
+    transform: scaleX(1);
+}
+
+.site3-comments__sub {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--s3-grey-2);
+    margin: 18px 0 0;
+    max-width: 640px;
+}
+
+/* ------------------------------------------------------------ */
+/* 3. Рамка вокруг iframe giscus — в стиле приборных модулей    */
+/* ------------------------------------------------------------ */
+
+.site3-comments__frame {
+    position: relative;
+    padding: 28px;
+    background: linear-gradient(180deg,
+        rgba(212, 255, 0, 0.03) 0%,
+        rgba(212, 255, 0, 0.01) 100%);
+    border: 1px solid rgba(212, 255, 0, 0.18);
+    border-left: 3px solid rgba(212, 255, 0, 0.55);
+    transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.5s ease;
+}
+
+.site3-comments__frame:hover {
+    border-color: rgba(212, 255, 0, 0.45);
+    border-left-color: var(--s3-rad);
+    background: linear-gradient(180deg,
+        rgba(212, 255, 0, 0.05) 0%,
+        rgba(212, 255, 0, 0.02) 100%);
+    box-shadow: 0 0 40px -15px rgba(212, 255, 0, 0.35);
+}
+
+/* Уголки по краям панели */
+.site3-comments__frame::before,
+.site3-comments__frame::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-color: var(--s3-rad);
+    border-style: solid;
+    pointer-events: none;
+    filter: drop-shadow(0 0 6px rgba(212, 255, 0, 0.6));
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.site3-comments__frame::before {
+    top: -1px;
+    left: -1px;
+    border-width: 2px 0 0 2px;
+}
+
+.site3-comments__frame::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 2px 2px 0;
+}
+
+.site3-comments__frame:hover::before,
+.site3-comments__frame:hover::after {
+    width: 28px;
+    height: 28px;
+}
+
+/* Ифрейм giscus */
+.site3-comments .giscus {
+    min-height: 240px;
+}
+
+.site3-comments .giscus,
+.site3-comments .giscus-frame {
+    width: 100% !important;
+}
+
+/* ------------------------------------------------------------ */
+/* 4. Адаптив                                                   */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .site3-comments {
+        padding: 70px 20px 80px;
+    }
+
+    .site3-comments__head {
+        padding-left: 20px;
+        margin-bottom: 40px;
+    }
+
+    .site3-comments__head::before {
+        width: 2px;
+    }
+
+    .site3-comments__title {
+        font-size: clamp(30px, 8vw, 48px);
+    }
+
+    .site3-comments__frame {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .site3-comments__frame {
+        padding: 12px;
+        border-left-width: 2px;
+    }
+}
