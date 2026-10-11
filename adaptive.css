@@ -404,3 +404,261 @@ html, body {
         margin-right: 12px !important;
     }
 }
+/* ============================================================ */
+/* МОБИЛЬНЫЙ ГЛОБАЛЬНЫЙ ФИКС — ничего не вылезает за экран     */
+/* ============================================================ */
+
+@media (max-width: 900px) {
+
+    /* --- 1. ГЛАВНОЕ: запрет горизонтального скролла --- */
+    html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        position: relative !important;
+    }
+
+    /* --- 2. Все крупные контейнеры — по ширине экрана --- */
+    body > *,
+    main,
+    section,
+    article,
+    header,
+    footer,
+    aside,
+    div,
+    details {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* --- 3. Абсолютные элементы с фикс. шириной — обрезаем --- */
+    [style*="width"] {
+        max-width: 100% !important;
+    }
+
+    /* --- 4. Длинные слова — переносятся --- */
+    p, span, li, a, h1, h2, h3, h4, h5, h6,
+    .subsection__text, .timeline__item p, .node__text,
+    .suk__text, .suk__note, .suk__quote,
+    .card__tagline, .card__panel-body p, .card__note,
+    .card__fact, .vadimus__panel-body p,
+    .vadimus__note, .vadimus__tagline,
+    .country__desc, .country__quote, .country__short,
+    .dossier__text, .dossier__note, .dossier__fact dd,
+    .bio__section p, .bio__tagline,
+    .modal__section p, .modal__note, .modal__tagline,
+    .notice__text, .notice__small,
+    .footer__text p, .footer__text .small,
+    .wanted__intro, .wanted__small, .wanted__reqs li,
+    .forbidden p, .forbidden__warning,
+    .law__text, .quote p, .quote__author,
+    .population__info > div,
+    .site3-hero__lead p,
+    .site3-anthem-lyrics__body p,
+    .site3-dossier__text, .site3-dossier__note,
+    .site3-object__desc, .site3-row__text,
+    .site3-tech__text, .site3-vpk__text,
+    .site05__about-lead, .site05__about-note,
+    .site05-mc__note, .s05-bio__section p,
+    .site2-suk__info p, .site2-wanted__text,
+    .site2-footer p {
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
+        word-break: break-word !important;
+        hyphens: auto !important;
+        max-width: 100% !important;
+    }
+
+    /* --- 5. Таблицы и гриды — сжимаются в одну колонку --- */
+    .population__info,
+    .achievements,
+    .timeline,
+    .infrastructure,
+    .country__stats,
+    .country__spirits,
+    .card__facts,
+    .card__panels,
+    .vadimus__facts,
+    .vadimus__panels,
+    .vadimus__regalia,
+    .wanted__facts,
+    .wanted__grid,
+    .wanted__reqs,
+    .bio__facts,
+    .bios,
+    .ores__panel,
+    .suk,
+    .symbols,
+    .enemies,
+    .countries,
+    .site3-leaders,
+    .site3-tech,
+    .site3-symbols,
+    .site3-hero__lead,
+    .site3-hero__stats,
+    .site3-pop,
+    .site3-readiness__item,
+    .site3-table__row,
+    .site3-list__item,
+    .site3-object,
+    .site3-law,
+    .site3-timeline__item,
+    .site3-compare__row,
+    .site3-dossier__head,
+    .site3-dossier__fact,
+    .site3-population__big,
+    .site3-population__card,
+    .site05__sites,
+    .site05-mc__grid,
+    .s05-bio__body,
+    .site2-suk,
+    .site2-wanted {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Плюс те, что реально grid — но пусть остаются grid 1fr */
+    .site3-hero__lead,
+    .site3-symbols,
+    .site3-hero__stats,
+    .site05__sites,
+    .site05-mc__grid,
+    .site2-suk,
+    .site2-wanted,
+    .country__stats,
+    .country__spirits,
+    .vadimus__facts,
+    .vadimus__panels,
+    .vadimus__regalia,
+    .card__facts,
+    .card__panels,
+    .bio__facts,
+    .wanted__facts,
+    .ores__panel,
+    .population__info,
+    .achievements,
+    .timeline,
+    .infrastructure {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    /* --- 6. Все элементы с grid-template-columns в несколько колонок — сжимаем --- */
+    [class*="__grid"],
+    [class*="__row"],
+    [class*="__facts"],
+    [class*="__stats"],
+    [class*="__panels"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* --- 7. Кнопки и крупные блоки — не шире экрана --- */
+    .header__button,
+    .card__btn,
+    .card__toggle,
+    .card__link,
+    .country__toggle,
+    .bio-card__btn,
+    .modal__tab,
+    .card__panel,
+    .country__stat,
+    .country__spirit,
+    .country__decision,
+    .notice__container,
+    .warning,
+    .address__text,
+    .profile__video,
+    .quote,
+    .forbidden__warning,
+    .forbidden__stamp,
+    .wanted__warning,
+    .country__symbol,
+    .country__leader,
+    .site3-anthem,
+    .site05-mc__btn,
+    .site2-link-btn {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* --- 8. Код и таблицы — горизонтальный скролл только у них --- */
+    pre, code, .site3-table__items {
+        overflow-x: auto !important;
+        max-width: 100% !important;
+    }
+
+    /* --- 9. Изображения — не вылезают --- */
+    img,
+    video,
+    iframe {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* --- 10. Все отступы внутри секций — компактные --- */
+    .section,
+    .hero,
+    .notice,
+    .comments,
+    .site--2__container,
+    .site--3__container,
+    .site--05__container,
+    .forbidden,
+    .footer,
+    .wanted {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
+        max-width: 100vw !important;
+    }
+
+    /* --- 11. Заголовки — уменьшаем, чтобы не вылезали в одну строку --- */
+    .hero__title,
+    .section__head h2,
+    .forbidden h2,
+    .wanted__title,
+    .site2-hero__title,
+    .site3-hero__title,
+    .site3-section__title,
+    .site05__title,
+    .site05__about-title,
+    .subsection__title,
+    .timeline__item h3,
+    .node__title,
+    .country__name,
+    .card__name,
+    .modal__name,
+    .bio__name,
+    .vadimus__name,
+    .site3-leader__name,
+    .site3-object__name,
+    .site3-dossier__title,
+    .site3-anthem-block__label,
+    .notice__title,
+    .country__leader-name {
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+        max-width: 100% !important;
+        hyphens: auto !important;
+    }
+
+    /* Но те, что должны быть одной строкой — не рвём */
+    .site3-hero__title,
+    .site3-hero__title em,
+    .wanted__badge,
+    .country__status,
+    .card__status,
+    .bio__status,
+    .bio-card__status,
+    .modal__status,
+    .country__toggle,
+    .card__toggle {
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+        hyphens: none !important;
+    }
+}
