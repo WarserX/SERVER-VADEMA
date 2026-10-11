@@ -16687,3 +16687,98 @@ section.site3-hero h1.site3-hero__title em {
         font-size: 8.5vw !important;
     }
 }
+/* ============================================================ */
+/* PATCH v99 — Боевая готовность: полоса не пересекает текст    */
+/* Ставить в самый конец site3.css.                             */
+/* ============================================================ */
+
+/* --- Базовая сетка: жёстко сверху, без baseline --- */
+/* baseline в grid даёт непредсказуемое выравнивание: полоса    */
+/* «прилипает» к базовой линии текста и визуально режет буквы.  */
+
+.site3-readiness__item {
+    display: grid !important;
+    grid-template-columns: 220px 1fr 100px !important;
+    gap: 32px !important;
+    align-items: start !important;
+    padding: 26px 0 !important;
+    border-bottom: 1px solid var(--s3-line-2) !important;
+    min-width: 0 !important;
+}
+
+.site3-readiness__item:last-child {
+    border-bottom: none !important;
+}
+
+/* --- Название: переносится, не выходит за колонку --- */
+
+.site3-readiness__name {
+    font-size: 16px !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    padding-left: 18px !important;
+    align-self: start !important;
+}
+
+/* --- Середина: отступ от верха + воздух между полосой и текстом --- */
+
+.site3-readiness__middle {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    min-width: 0 !important;
+    padding-top: 4px !important;
+}
+
+.site3-readiness__bar {
+    height: 8px !important;
+    margin: 0 !important;
+    position: relative !important;
+}
+
+/* --- Значение: справа сверху --- */
+
+.site3-readiness__value {
+    font-size: 42px !important;
+    line-height: 1 !important;
+    text-align: right !important;
+    justify-self: end !important;
+    align-self: start !important;
+}
+
+/* --- Мобильные: полоса на отдельной строке --- */
+
+@media (max-width: 900px) {
+    .site3-readiness {
+        gap: 0 !important;
+    }
+
+    .site3-readiness__item {
+        grid-template-columns: 1fr auto !important;
+        gap: 8px 16px !important;
+        padding: 20px 0 !important;
+    }
+
+    .site3-readiness__name {
+        font-size: 15px !important;
+        padding-left: 16px !important;
+    }
+
+    .site3-readiness__middle {
+        grid-column: 1 / -1 !important;
+        order: 3 !important;
+        margin-top: 16px !important;
+        padding-top: 0 !important;
+        gap: 12px !important;
+    }
+
+    .site3-readiness__bar {
+        height: 8px !important;
+    }
+
+    .site3-readiness__value {
+        font-size: 32px !important;
+        align-self: start !important;
+    }
+}
