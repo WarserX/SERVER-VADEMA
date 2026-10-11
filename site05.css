@@ -1564,3 +1564,43 @@
 .header--site05 .header__list--site05 {
     display: flex !important;
 }
+
+/* ============================================================ */
+/* КНОПКА «ЗАПРОСИТЬ ПОТЧЕВАНИЕ» НА МОБИЛЕ — нормальный размер  */
+/* ============================================================ */
+
+@media (max-width: 900px) {
+
+    .header__button,
+    .header--site05 .header__button {
+        font-size: 13px !important;
+        padding: 8px 14px !important;
+        border-width: 2px !important;
+        transform: scale3d(0.92, 0.92, 1) !important;
+        max-width: 42vw !important;
+        white-space: normal !important;
+        line-height: 1.15 !important;
+        text-align: center !important;
+    }
+
+    .header--scrolled .header__button,
+    .header--site05.header--scrolled .header__button {
+        font-size: 11px !important;
+        padding: 6px 10px !important;
+    }
+
+    /* Текст внутри кнопки переносится, но не растягивает */
+    .header__button span {
+        display: block !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        max-width: 100% !important;
+        line-height: 1.1 !important;
+    }
+
+    /* Видео под кнопкой на мобиле — уменьшаем, не перекрывает */
+    .header__button video {
+        width: 160px !important;
+        height: 130px !important;
+    }
+}
