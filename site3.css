@@ -16644,3 +16644,46 @@
         letter-spacing: 0.24em !important;
     }
 }
+/* ============================================================ */
+/* ЯДЕРСТАН — одна строка. Жёстко, через специфичность          */
+/* Перебивает display: inline-block из v77.                     */
+/* ============================================================ */
+
+section.site3-hero h1.site3-hero__title {
+    font-size: 9vw !important;
+    white-space: nowrap !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px 0 !important;
+    margin: 0 auto !important;
+    letter-spacing: -0.05em !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    transform: none !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+}
+
+section.site3-hero h1.site3-hero__title em {
+    display: inline !important;
+    font-style: normal !important;
+}
+
+@media (max-width: 900px) {
+    .site3-hero,
+    .site--3__container {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    section.site3-hero h1.site3-hero__title {
+        font-size: 9vw !important;
+    }
+}
+
+@media (max-width: 420px) {
+    section.site3-hero h1.site3-hero__title {
+        font-size: 8.5vw !important;
+    }
+}
