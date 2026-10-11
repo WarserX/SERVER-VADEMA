@@ -17358,3 +17358,49 @@ section.site3-hero h1.site3-hero__title em {
         box-sizing: border-box !important;
     }
 }
+/* ============================================================ */
+/* PATCH v101 — герб крупнее. Заменяет v94 и часть v99.         */
+/* ============================================================ */
+
+/* --- ПК: герб заметно крупнее --- */
+
+.site3-hero__symbol:nth-child(1) {
+    max-width: 780px !important;
+}
+
+.site3-hero__symbol:nth-child(1) .site3-hero__symbol-slot {
+    max-height: none !important;
+    min-height: 0 !important;
+    padding: 24px !important;
+}
+
+.site3-hero__symbol:nth-child(1) .site3-hero__symbol-slot img {
+    max-width: 100% !important;
+    max-height: 760px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+/* --- Телефон: тоже крупнее, но без выхода за экран --- */
+
+@media (max-width: 900px) {
+    .site3-hero__symbol:nth-child(1) {
+        max-width: 100% !important;
+    }
+    .site3-hero__symbol:nth-child(1) .site3-hero__symbol-slot {
+        padding: 16px !important;
+    }
+    .site3-hero__symbol:nth-child(1) .site3-hero__symbol-slot img {
+        max-height: 520px !important;
+        max-width: 100% !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .site3-hero__symbol:nth-child(1) .site3-hero__symbol-slot img {
+        max-height: 420px !important;
+    }
+}
