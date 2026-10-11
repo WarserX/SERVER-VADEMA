@@ -16436,3 +16436,211 @@
         flex-shrink: 0 !important;
     }
 }
+/* ============================================================ */
+/* МОБИЛЬНЫЙ ФИКС — ЯДЕРСТАН                                    */
+/* Убираем вылезание текста + правим знак ☢                     */
+/* ============================================================ */
+
+@media (max-width: 900px) {
+
+    /* --- 1. Всё, что внутри сайта 3, не выходит за экран --- */
+
+    .site--3,
+    .site--3__container,
+    .site3-hero,
+    .site3-section,
+    .site3-footer {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+    }
+
+    /* --- 2. Длинные тексты — переносятся, не растягивают --- */
+
+    .site--3 * {
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
+    }
+
+    /* Но короткие элементы — не рвём по слогам */
+    .site3-hero__title,
+    .site3-hero__title em,
+    .site3-hero__sub,
+    .site3-section__title,
+    .site3-leader__name,
+    .site3-object__num,
+    .site3-law__num,
+    .site3-dossier__num,
+    .site3-table__count,
+    .site3-anthem__label,
+    .site3-anthem-block__label {
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+    }
+
+    /* --- 3. Секции — компактные отступы --- */
+
+    .site3-section {
+        padding: 50px 0 !important;
+    }
+
+    .site--3__container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    /* --- 4. ЗНАК ☢ — уменьшен, спрятан в угол, не раздувает --- */
+    /* Раньше: right: -120px; bottom: -120px; font-size: 55vw+    */
+
+    .site3-hero {
+        overflow: hidden !important;
+        padding-bottom: 60px !important;
+    }
+
+    .site3-hero::before {
+        font-size: 280px !important;
+        right: -60px !important;
+        bottom: -60px !important;
+        opacity: 0.06 !important;
+    }
+
+    /* --- 5. Двухколоночные сетки — в одну колонку --- */
+
+    .site3-hero__lead,
+    .site3-leaders,
+    .site3-tech,
+    .site3-symbols,
+    .site3-hero__stats,
+    .site3-pop {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* --- 6. ДОСЬЕ и АРСЕНАЛ — не вылезают за края --- */
+
+    .site3-dossier,
+    .site3-dossier__body,
+    .site3-dossier__facts,
+    .site3-dossier__fact {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .site3-dossier__head {
+        grid-template-columns: 40px 1fr auto !important;
+        gap: 12px !important;
+    }
+
+    .site3-dossier__title {
+        font-size: 14px !important;
+        letter-spacing: 0.04em !important;
+    }
+
+    .site3-dossier__fact {
+        grid-template-columns: 1fr !important;
+        gap: 4px !important;
+    }
+
+    /* Таблица арсенала — одна колонка, чипы переносятся */
+    .site3-table {
+        padding: 20px 8px !important;
+    }
+
+    .site3-table__row {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        padding: 22px 10px 22px 40px !important;
+    }
+
+    .site3-table__row:hover {
+        padding-left: 44px !important;
+    }
+
+    .site3-table__cat {
+        white-space: normal !important;
+        font-size: 15px !important;
+    }
+
+    .site3-table__items {
+        flex-wrap: wrap !important;
+    }
+
+    .site3-table__items span {
+        white-space: normal !important;
+        font-size: 13px !important;
+        padding: 6px 10px !important;
+    }
+
+    .site3-table__count {
+        font-size: 26px !important;
+        justify-self: start !important;
+        text-align: left !important;
+        padding: 8px 12px !important;
+    }
+
+    /* --- 7. Статусы в объектах — не вылезают --- */
+
+    .site3-object {
+        grid-template-columns: 60px 1fr !important;
+        gap: 16px !important;
+        padding: 24px 0 !important;
+    }
+
+    .site3-object__num {
+        font-size: 44px !important;
+    }
+
+    .site3-object__status {
+        grid-column: 2 !important;
+        justify-self: start !important;
+    }
+
+    /* --- 8. Заголовки секций — компактнее --- */
+
+    .site3-section__title {
+        font-size: clamp(26px, 7vw, 40px) !important;
+        line-height: 1.05 !important;
+    }
+
+    .site3-section__num {
+        font-size: 10px !important;
+        letter-spacing: 0.2em !important;
+    }
+
+    /* --- 9. Гимн на мобиле — оба ползунка 100% --- */
+
+    .site3-anthem-player {
+        flex-wrap: wrap !important;
+        gap: 8px 10px !important;
+    }
+
+    .site3-anthem-progress,
+    .site3-anthem-volume {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* --- 10. Флаг/герб — не вылезают --- */
+
+    .site3-hero__symbols {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        gap: 20px !important;
+    }
+
+    .site3-hero__symbol {
+        padding: 16px 16px 12px !important;
+        max-width: 100% !important;
+    }
+
+    .site3-hero__symbol-slot img {
+        max-width: 100% !important;
+        max-height: 240px !important;
+    }
+
+    .site3-hero__symbol-label {
+        font-size: 11px !important;
+        letter-spacing: 0.24em !important;
+    }
+}
