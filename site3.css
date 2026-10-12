@@ -17649,3 +17649,57 @@ section.site3-hero h1.site3-hero__title em {
         border-left-width: 2px;
     }
 }
+/* ============================================================ */
+/* PATCH v103 — арсенал: категория не режется, чипы в ряд       */
+/* Заменяет v63.                                                */
+/* ============================================================ */
+
+/* 1. Колонка категории — чуть шире, но не в ущерб чипам */
+.site3-table__row {
+    grid-template-columns: 360px 1fr 200px !important;
+    gap: 28px !important;
+    column-gap: 28px !important;
+    row-gap: 20px !important;
+}
+
+/* 2. Категория — меньше буквы, меньше разлёт. Влезает в 360px */
+.site3-table__cat {
+    font-size: 16px !important;
+    letter-spacing: 0.05em !important;
+    white-space: nowrap !important;
+    padding-left: 26px !important;
+    overflow: visible !important;
+}
+
+/* 3. Чипы — компактнее, чтобы садились по 2 в ряд */
+.site3-table__items {
+    gap: 10px 12px !important;
+    min-width: 0 !important;
+    row-gap: 10px !important;
+    column-gap: 12px !important;
+}
+
+.site3-table__items span {
+    font-size: 14px !important;
+    padding: 6px 12px !important;
+    line-height: 1.35 !important;
+}
+
+/* 4. Счётчик — тоже подтягиваем, чтоб не выпирал */
+.site3-table__count {
+    font-size: 40px !important;
+    padding: 10px 16px !important;
+}
+
+/* 5. Мобилка — одна колонка, категория переносится */
+@media (max-width: 900px) {
+    .site3-table__row {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+    }
+    .site3-table__cat {
+        font-size: 15px !important;
+        letter-spacing: 0.03em !important;
+        white-space: normal !important;
+    }
+}
