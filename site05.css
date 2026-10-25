@@ -1770,3 +1770,24 @@
     .site05-mc__notes { padding: 20px 18px; }
     .site05-mc__notes p { font-size: 12.5px; }
 }
+
+/* --- Важное примечание про оружие --- */
+
+.site05-mc__notes-important {
+    padding: 16px 20px;
+    border-left: 3px solid var(--s05-fg);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--s05-fg) !important;
+    margin-bottom: 4px !important;
+}
+
+.site05-mc__notes-important strong {
+    color: var(--s05-fg);
+    font-weight: 700;
+}
+
+@media (max-width: 700px) {
+    .site05-mc__notes-important {
+        padding: 12px 14px;
+    }
+}
