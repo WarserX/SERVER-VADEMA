@@ -1649,3 +1649,124 @@
         left: 12px !important;
     }
 }
+
+
+/* ============================================================ */
+/* PATCH v2 — site05: IP, новые правила, TACZ, примечания       */
+/* Заменяет старый блок правил. Ставить в конец site05.css.     */
+/* ============================================================ */
+
+/* --- IP сервера --- */
+
+.site05__ip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 44px 32px;
+    margin-bottom: 100px;
+    border: 1px solid var(--s05-line);
+    background: rgba(255, 255, 255, 0.02);
+    text-align: center;
+    transition: border-color 0.35s ease, background 0.35s ease;
+}
+
+.site05__ip:hover {
+    border-color: var(--s05-line-2);
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.site05__ip-label {
+    font-family: "Space Grotesk", monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--s05-grey);
+}
+
+.site05__ip-value {
+    font-family: "Tektur", sans-serif;
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: var(--s05-fg);
+    line-height: 1;
+    user-select: all;
+    -webkit-user-select: all;
+    cursor: copy;
+    transition: text-shadow 0.3s ease;
+}
+
+.site05__ip-value:hover {
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 700px) {
+    .site05__ip {
+        padding: 28px 20px;
+        margin-bottom: 60px;
+    }
+    .site05__ip-value {
+        font-size: clamp(22px, 7vw, 38px);
+        word-break: break-all;
+    }
+}
+
+/* --- Вводный текст к правилам --- */
+
+.site05__rules-intro {
+    font-family: "Space Grotesk", monospace;
+    font-size: 14.5px;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    color: var(--s05-grey);
+    margin: 0 0 26px;
+    max-width: 820px;
+}
+
+@media (max-width: 700px) {
+    .site05__rules-intro {
+        font-size: 13.5px;
+        margin-bottom: 20px;
+    }
+}
+
+/* --- Примечания к модам --- */
+
+.site05-mc__notes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 26px 32px;
+    border: 1px solid var(--s05-line);
+    background: rgba(255, 255, 255, 0.015);
+    margin-top: 20px;
+}
+
+.site05-mc__notes p {
+    font-family: "Space Grotesk", monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--s05-grey);
+    margin: 0;
+}
+
+.site05-mc__notes strong {
+    color: var(--s05-fg);
+    font-weight: 700;
+}
+
+.site05-mc__notes code {
+    font-family: "Space Grotesk", monospace;
+    font-size: 12.5px;
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--s05-line);
+    color: var(--s05-fg);
+}
+
+@media (max-width: 700px) {
+    .site05-mc__notes { padding: 20px 18px; }
+    .site05-mc__notes p { font-size: 12.5px; }
+}
